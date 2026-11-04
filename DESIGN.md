@@ -85,7 +85,7 @@ Light theme only.
 | Parcul Colina | 30 min | 40 lei | Mănăștur, umbră |
 | Malul Someșului | 60 min | 60 lei | pe malul râului, dus-întors, câini energici |
 
-  City only: Dan does not walk in Hoia or Făget forests (2026-11-04). "Malul Someșului" is an open path (there and back), so its walking paw goes out and back instead of looping. Park texts live in `src/spots.json`; a `"label": "left"` puts the name left of the dot where it would run off the map.
+  City only: Dan does not walk in Hoia or Făget forests (2026-11-04). "Malul Someșului" is an open path (there and back), so its walking paw goes out and back instead of looping. Park texts live in `src/spots.json`; `"label": "left"` or `"below"` moves the name where the default (right of the dot) would overlap or run off the map.
 
 ## Content
 

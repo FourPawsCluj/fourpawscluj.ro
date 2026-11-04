@@ -39,6 +39,13 @@ def pick(src, lang):
     return re.sub(r'\{\{(.*?)\|\|(.*?)\}\}', lambda m: m.group(i + 1), src, flags=re.S)
 
 
+LABEL = {  # where a spot's name sits; set "label" in src/spots.json when the default overlaps something
+    None: '<text x="22" y="6">{name}</text></g>',
+    'left': '<text x="-22" y="6" text-anchor="end">{name}</text></g>',
+    'below': '<text x="0" y="40" text-anchor="middle">{name}</text></g>',
+}
+
+
 def map_parts(m, spots):
     defs, routes, marks, chips = [], [], [], []
     for i, (k, r) in enumerate(m['routes'].items()):
@@ -53,8 +60,7 @@ def map_parts(m, spots):
         x, y = r['c']
         marks.append(f'<g class="spot" data-k="{k}" tabindex="0" role="button" aria-label="{name}" transform="translate({x} {y})">'
                      f'<circle class="hit" r="34"/><circle class="pulse" r="16"/><circle class="ring" r="14"/><circle class="core" r="5"/>'
-                     + (f'<text x="-22" y="6" text-anchor="end">{name}</text></g>' if spots[k].get('label') == 'left'
-                        else f'<text x="22" y="6">{name}</text></g>'))
+                     + LABEL.get(spots[k].get('label'), LABEL[None]).format(name=name))
         chips.append(f'<button type="button" data-k="{k}">{name}</button>')
     return ''.join(defs), '\n'.join(routes), '\n'.join(marks), ''.join(chips)
 

@@ -92,7 +92,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding-block:
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .chips button{border:1.5px solid var(--olive);background:#fff;color:var(--olive);border-radius:999px;padding:9px 14px;font:700 14px "DM Sans",sans-serif;cursor:pointer}
 .chips button.on{background:var(--olive);color:var(--lime)}
-.tip{position:absolute;pointer-events:none;width:210px;background:#fff;border-radius:16px;padding:8px;box-shadow:0 12px 30px rgba(27,47,4,.18);transform:translate(-50%,calc(-100% - 22px));opacity:0;transition:opacity .15s}
+.tip{position:absolute;pointer-events:none;width:210px;background:#fff;border-radius:16px;padding:8px;box-shadow:0 12px 30px rgba(27,47,4,.18);left:0;top:0;opacity:0;z-index:5;transition:opacity .15s}
 .tip.show{opacity:1}
 .tip .ph{height:130px}
 .tip b{display:block;padding:8px 4px 2px;color:var(--olive)}
@@ -319,12 +319,16 @@ document.querySelectorAll(".spot").forEach(g => {
   const s = SPOTS[g.dataset.k];
   if (canHover) {
     g.addEventListener("mouseenter", () => {
-      const r = g.querySelector(".ring").getBoundingClientRect(), b = box.getBoundingClientRect();
-      tip.style.left = (r.left + r.width / 2 - b.left) + "px";
-      tip.style.top = (r.top - b.top) + "px";
       tip.querySelector(".ph").src = img(g.dataset.k, 1);
       tip.querySelector("b").textContent = s.name;
       tip.querySelector("small").textContent = s[lang].dur + " · " + s.price + " lei";
+      // keep the card inside the map: above the dot if it fits, else below; never past the sides
+      const r = g.querySelector(".ring").getBoundingClientRect(), b = box.getBoundingClientRect();
+      const w = tip.offsetWidth, h = tip.offsetHeight, gap = 14, pad = 10;
+      const cx = r.left + r.width / 2 - b.left;
+      const above = r.top - b.top - gap - h >= pad;
+      tip.style.left = Math.min(Math.max(cx - w / 2, pad), b.width - w - pad) + "px";
+      tip.style.top = (above ? r.top - b.top - gap - h : r.bottom - b.top + gap) + "px";
       tip.classList.add("show");
     });
     g.addEventListener("mouseleave", () => tip.classList.remove("show"));
