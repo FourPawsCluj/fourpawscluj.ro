@@ -5,3 +5,4 @@ tools/map/osm/
 tools/images/raw/
 .env
 .env.*
+social/src/hero.png
