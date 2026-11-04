@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="{{ro||en}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{Plimbări câini Cluj-Napoca · Four Paws Cluj||Dog walking in Cluj-Napoca · Four Paws Cluj}}</title>
+<meta name="description" content="{{Plimbări pentru câini în Cluj-Napoca, prin parcurile din oraș. Preluare de acasă inclusă, de la 40 lei / 30 min. Programare pe WhatsApp: 0746 048 445.||Dog walks in Cluj-Napoca, through the city's parks. Pickup from home included, from 40 lei / 30 min. Book on WhatsApp: 0746 048 445.}}">
+<link rel="canonical" href="@@URL@@">
+<link rel="alternate" hreflang="ro" href="@@SITE@@/">
+<link rel="alternate" hreflang="en" href="@@SITE@@/en/">
+<link rel="alternate" hreflang="x-default" href="@@SITE@@/">
+<meta name="theme-color" content="#1B2F04">
+<link rel="icon" href="@@ROOT@@favicon.ico" sizes="32x32">
+<link rel="icon" href="@@ROOT@@favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="@@ROOT@@apple-touch-icon.png">
+<link rel="manifest" href="@@ROOT@@site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Four Paws Cluj">
+<meta property="og:locale" content="{{ro_RO||en_GB}}">
+<meta property="og:url" content="@@URL@@">
+<meta property="og:title" content="{{Plimbări câini în Cluj-Napoca||Dog walking in Cluj-Napoca}}">
+<meta property="og:description" content="{{Parcurile din Cluj, preluare de acasă inclusă. Programare pe WhatsApp.||The parks of Cluj, pickup from home included. Book on WhatsApp.}}">
+<meta property="og:image" content="@@SITE@@/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">@@JSONLD@@</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --olive:#1B2F04; --lime:#C1F585; --orange:#FF8200; --cream:#FFF7F0; --ink:#1F2937; --muted:#5B6152;
+  --land:#FBF3E6; --park:#B9E58C; --wood:#8CCB6A; --water:#8FCBE6; --road:#FFFAF2;
+  --route:#FF8200; --dot:#1B2F04; --r:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:16px/1.55 "DM Sans",system-ui,sans-serif;color:var(--ink);background:var(--cream);overflow-x:hidden}
+h1,h2,h3{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif;color:var(--olive);line-height:1.02;margin:0}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--olive);color:var(--lime);padding:10px 14px;border-radius:10px;z-index:99}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding-block:18px}
+.logo{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:22px;color:var(--olive);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo b{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--lime)}
+.nav-r{display:flex;gap:10px;align-items:center}
+.lang{border:1.5px solid var(--olive);border-radius:999px;padding:6px 12px;font:700 13px "DM Sans",sans-serif;color:var(--olive);text-decoration:none}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--olive);color:var(--lime);text-decoration:none;font-weight:700;border-radius:999px;padding:14px 22px}
+.btn.orange{background:var(--orange);color:#fff}
+.btn svg{width:20px;height:20px;flex:none}
+
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-block:30px 70px}
+.hero h1{font-size:clamp(46px,7.4vw,104px);font-weight:800;letter-spacing:-.03em}
+.hero h1 em{font-style:normal;background:var(--lime);padding:0 .12em;border-radius:.2em}
+.hero p{font-size:19px;color:var(--muted);max-width:30em;margin:22px 0 28px}
+.eye{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;background:#b9dd86}
+.eye img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+.map-sec{padding-block:70px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+.sec-head h2,.report h2{font-size:clamp(34px,5vw,60px);font-weight:800;letter-spacing:-.02em}
+.sec-head p{max-width:28em;color:var(--muted);margin:0}
+.map-box{position:relative;border-radius:var(--r);overflow:hidden;background:var(--land);aspect-ratio:880/490;width:100%}
+.map-box svg.map{position:absolute;inset:0;width:100%;height:100%;display:block}
+.land{fill:var(--land)}
+.woods{fill:var(--wood)} .parks{fill:var(--park)} .water{fill:var(--water)}
+.river{fill:none;stroke:var(--water);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.roads1,.roads2,.roads3{fill:none;stroke:var(--road);stroke-linecap:round;stroke-linejoin:round;opacity:.55}
+.roads1{stroke-width:4} .roads2{stroke-width:2.4} .roads3{stroke-width:1.3}
+.wc{filter:url(#wc)}
+.paper{mix-blend-mode:multiply;pointer-events:none}
+.city-lbl{font:800 15px "DM Sans",sans-serif;letter-spacing:.35em;fill:var(--olive);opacity:.35}
+.route-base{fill:none;stroke:var(--route);stroke-width:4;stroke-dasharray:2 9;stroke-linecap:round}
+.route-mask{fill:none;stroke:#fff;stroke-width:14;stroke-dasharray:1;stroke-dashoffset:1}
+.drawn .route-mask{transition:stroke-dashoffset 2.6s ease;stroke-dashoffset:0}
+.walker circle{fill:var(--orange);stroke:#fff;stroke-width:3}
+.walker path{fill:#fff}
+.spot{cursor:pointer;outline:none}
+.spot .hit{fill:transparent}
+.spot .ring{fill:var(--lime);stroke:var(--dot);stroke-width:3;transition:r .2s}
+.spot .core{fill:var(--dot)}
+.spot .pulse{fill:none;stroke:var(--dot);stroke-width:2;opacity:0;transform-origin:center;transform-box:fill-box;animation:pulse 2.4s ease-out infinite}
+.spot:hover .ring,.spot:focus-visible .ring,.spot.on .ring{r:18}
+.spot:focus-visible .ring{stroke:var(--orange)}
+.spot text{font:700 19px "DM Sans",sans-serif;fill:var(--olive);paint-order:stroke;stroke:var(--land);stroke-width:6px;stroke-linejoin:round}
+@keyframes pulse{0%{opacity:.8;transform:scale(.6)}100%{opacity:0;transform:scale(2.2)}}
+
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chips button{border:1.5px solid var(--olive);background:#fff;color:var(--olive);border-radius:999px;padding:9px 14px;font:700 14px "DM Sans",sans-serif;cursor:pointer}
+.chips button.on{background:var(--olive);color:var(--lime)}
+.tip{position:absolute;pointer-events:none;width:210px;background:#fff;border-radius:16px;padding:8px;box-shadow:0 12px 30px rgba(27,47,4,.18);transform:translate(-50%,calc(-100% - 22px));opacity:0;transition:opacity .15s}
+.tip.show{opacity:1}
+.tip .ph{height:130px}
+.tip b{display:block;padding:8px 4px 2px;color:var(--olive)}
+.tip small{display:block;padding:0 4px 4px;color:var(--muted)}
+.ph{display:block;width:100%;height:100%;min-height:0;border-radius:12px;object-fit:cover;background:#e7f9d1}
+.panel{position:absolute;top:16px;right:16px;bottom:16px;width:min(380px,calc(100% - 32px));background:#fff;border-radius:18px;padding:18px;box-shadow:0 20px 50px rgba(27,47,4,.2);transform:translateX(calc(100% + 30px));visibility:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),visibility 0s .35s;display:flex;flex-direction:column;gap:12px;overflow:auto}
+.panel.open{transform:none;visibility:visible;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.panel .x{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;border:0;background:var(--cream);font-size:20px;cursor:pointer;color:var(--olive)}
+.panel h3{font-size:30px;padding-right:40px}
+.panel .tags{display:flex;gap:6px;flex-wrap:wrap}
+.panel .tags span{background:var(--cream);border-radius:999px;padding:4px 10px;font-size:13px;font-weight:700;color:var(--olive)}
+.panel .gal{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:90px 90px;gap:6px}
+.panel .gal .ph:first-child{grid-row:span 2}
+.panel .price{display:flex;align-items:baseline;gap:8px;font-weight:700;color:var(--olive)}
+.panel .price b{font-family:"Bricolage Grotesque",sans-serif;font-size:38px}
+.panel p{margin:0;color:var(--muted)}
+.panel .btn{justify-content:center}
+
+.report{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;padding-block:70px}
+.report p{color:var(--muted);font-size:18px}
+.phone{background:#e9dfd3;border-radius:28px;padding:18px 14px;max-width:380px;justify-self:center;width:100%;border:8px solid var(--olive)}
+.wa-head{display:flex;align-items:center;gap:10px;padding:0 6px 12px;font-weight:700;color:var(--olive)}
+.wa-head i{width:36px;height:36px;border-radius:50%;background:var(--lime);display:grid;place-items:center}
+.bubble{background:#fff;border-radius:4px 16px 16px 16px;padding:8px;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.bubble .rep-ph{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:10px}
+.bubble .row{display:flex;justify-content:space-between;padding:8px 4px 2px;font-weight:700;color:var(--olive)}
+.bubble .ticks{display:flex;gap:6px;flex-wrap:wrap;padding:6px 4px}
+.bubble .ticks span{background:#eaf9d9;color:var(--olive);border-radius:999px;padding:3px 10px;font-size:13px;font-weight:700}
+.bubble .msg{padding:4px;font-size:15px}
+.bubble time{display:block;text-align:right;font-size:11px;color:#767676;padding:0 4px}
+.bubble time b{color:#34B7F1}
+
+.prices{padding-block:70px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.card{background:#fff;border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:6px}
+.card.hi{background:var(--olive);color:#e9f3dc}
+.card.hi h3,.card.hi .amt{color:var(--lime)}
+.card h3{font-size:22px}
+.card .amt{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:44px;color:var(--olive)}
+.card .amt small{font-size:18px}
+.card p{margin:0;font-size:15px;opacity:.85}
+
+footer{padding-block:50px calc(110px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:14px}
+footer a{color:var(--olive);font-weight:700}
+.wa-float{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 25px rgba(0,0,0,.2)}
+.wa-float svg{width:32px;height:32px;fill:#fff}
+
+.trail{position:absolute;top:0;right:6px;width:30px;pointer-events:none;z-index:1}
+.trail svg{position:absolute;width:16px;height:16px;color:#CFCFCF;transform:rotate(var(--rot));transition:color .35s}
+.trail svg.on{color:#111}
+
+@media (max-width:820px){
+  .hero,.report{grid-template-columns:1fr}
+  .eye{aspect-ratio:4/3}
+  .panel{position:fixed;z-index:60;top:auto;left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom,0px));width:auto;max-height:80vh;transform:translateY(calc(100% + 20px))}
+  .panel .gal{grid-template-rows:80px 80px}
+  .nav-r .btn{display:none}
+  .trail{right:2px;width:20px}
+  .trail svg{width:12px;height:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  .route-mask{stroke-dashoffset:0!important;transition:none!important}
+  .spot .pulse{animation:none}
+  .walker{display:none}
+  .panel,.trail svg{transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#map">{{Sari la hartă||Skip to the map}}</a>
+<div class="trail" id="trail" aria-hidden="true"></div>
+
+<div class="wrap">
+  <nav>
+    <a class="logo" href="@@HOME@@"><b><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#paw"/></svg></b>Four Paws Cluj</a>
+    <div class="nav-r">
+      <a class="lang" href="@@OTHER@@" hreflang="{{en||ro}}" lang="{{en||ro}}">{{EN||RO}}</a>
+      <a class="btn" href="@@WA@@" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#wa"/></svg>{{Programează pe WhatsApp||Book on WhatsApp}}</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <h1>{{Cluj, văzut de la <em>30&nbsp;cm.</em>||Cluj, seen from <em>30&nbsp;cm</em> up.}}</h1>
+      <p>{{Plimbări pentru câini în Cluj-Napoca, prin parcurile din oraș pe care câinele tău le va iubi. Un mesaj pe WhatsApp și pornim.||Dog walks in Cluj-Napoca, through the city parks your dog will love. One message on WhatsApp and we're on our way.}}</p>
+      <a class="btn orange" href="@@WA@@" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#wa"/></svg>{{Scrie-ne: 0746 048 445||Message us: 0746 048 445}}</a>
+    </div>
+    <div class="eye">
+      <img src="/img/hero.webp" width="900" height="900" fetchpriority="high" alt="{{Cocker spaniel care aleargă spre cameră pe o alee din parc, fotografiat de la înălțimea unui câine||Cocker spaniel running toward the camera on a park path, shot from a dog's height}}">
+    </div>
+  </header>
+</div>
+
+<main>
+<section class="map-sec" id="map">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>{{Traseele noastre||Our routes}}</h2>
+      <p>{{Apasă pe un punct ca să vezi parcul, cât durează plimbarea și prețul. Pe hartă nu apare niciodată adresa ta.||Tap a dot to see the park, how long the walk is and the price. Your home never shows on the map.}}</p>
+    </div>
+    <div class="map-box" id="mapbox">
+      <svg class="map" viewBox="@@VIEWBOX@@" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <filter id="wc" x="-5%" y="-5%" width="110%" height="110%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="4" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="9" result="d"/>
+            <feGaussianBlur in="d" stdDeviation="1.1" result="b"/>
+            <feComposite in="b" in2="d" operator="arithmetic" k2=".55" k3=".55"/>
+          </filter>
+          <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2"/><feColorMatrix values="0 0 0 0 .55  0 0 0 0 .45  0 0 0 0 .35  0 0 0 -1.4 1.05"/></filter>
+        </defs>
+        <rect class="land" x="-200" y="-200" width="1400" height="1400"/>
+        <g class="wc">
+          <path class="woods" id="L-woods" d="@@L_woods@@"/>
+          <path class="parks" id="L-parks" d="@@L_parks@@"/>
+          <path class="water" id="L-water" d="@@L_water@@"/>
+          <path class="river" id="L-river" d="@@L_river@@"/>
+        </g>
+        <path class="roads3" d="@@L_roads3@@"/>
+        <path class="roads2" id="L-roads2" d="@@L_roads2@@"/>
+        <path class="roads1" id="L-roads1" d="@@L_roads1@@"/>
+        <rect class="paper" x="-200" y="-200" width="1400" height="1400" filter="url(#grain)" opacity=".5"/>
+        <text class="city-lbl" x="560" y="330">CLUJ-NAPOCA</text>
+      </svg>
+      <svg class="map" id="top" viewBox="@@VIEWBOX@@" preserveAspectRatio="xMidYMid slice" role="group" aria-label="{{Harta Cluj-Napoca cu traseele de plimbare||Map of Cluj-Napoca with our walk routes}}">
+        <defs>@@ROUTEDEFS@@</defs>
+        @@ROUTES@@
+        @@SPOTS@@
+      </svg>
+      <div class="tip" id="tip" aria-hidden="true"><img class="ph" alt=""><b></b><small></small></div>
+      <aside class="panel" id="panel" aria-live="polite">
+        <button class="x" id="px" aria-label="{{Închide||Close}}">×</button>
+        <h3 id="p-name"></h3>
+        <div class="tags" id="p-tags"></div>
+        <div class="gal"><img class="ph" width="720" height="720" alt=""><img class="ph" width="720" height="720" alt=""><img class="ph" width="720" height="720" alt=""></div>
+        <p id="p-desc"></p>
+        <div class="price"><b id="p-price"></b><span id="p-dur"></span></div>
+        <a class="btn orange" id="p-wa" href="@@WA@@" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#wa"/></svg>{{Vreau plimbarea asta||Book this walk}}</a>
+      </aside>
+    </div>
+    <div class="chips" id="chips">@@CHIPS@@</div>
+  </div>
+</section>
+
+<section class="wrap report">
+  <div>
+    <h2>{{Raport după fiecare plimbare||A report after every walk}}</h2>
+    <p>{{Când îți aducem câinele acasă, primești un mesaj pe WhatsApp: cât a durat, o poză și dacă totul a fost în regulă.||When we bring your dog home, you get a WhatsApp message: how long it took, a photo, and whether everything went fine.}}</p>
+  </div>
+  <div class="phone" role="img" aria-label="{{Exemplu de raport pe WhatsApp||Sample WhatsApp walk report}}">
+    <div class="wa-head"><i><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#paw"/></svg></i>Four Paws Cluj</div>
+    <div class="bubble">
+      <img class="rep-ph" src="/img/central-1.webp" width="720" height="720" loading="lazy" alt="{{Rex în Parcul Central||Rex in Parcul Central}}">
+      <div class="row"><span>Rex · Parcul Central</span></div>
+      <div class="ticks"><span>16:05–16:47 · 42 min</span><span>{{Pipi ✓||Pee ✓}}</span><span>{{Caca ✓||Poop ✓}}</span><span>{{Apă ✓||Water ✓}}</span></div>
+      <div class="msg">{{Rex s-a împrietenit cu un golden și a alergat de două ori în jurul lacului. Acum e acasă și bea apă 🐾||Rex made friends with a golden retriever and ran around the lake twice. Home now, drinking water 🐾}}</div>
+      <time>16:49 <b>✓✓</b></time>
+    </div>
+  </div>
+</section>
+
+<section class="wrap prices" id="preturi">
+  <div class="sec-head"><h2>{{Prețuri||Prices}}</h2><p>{{Preluare și aducere acasă incluse, oriunde în Cluj-Napoca.||Pickup from home and drop-off included, anywhere in Cluj-Napoca.}}</p></div>
+  <div class="cards">
+    <div class="card"><h3>{{Prima plimbare||Trial walk}}</h3><div class="amt">30 <small>lei</small></div><p>{{30 min, ca să ne cunoaștem||30 min, so we get to know each other}}</p></div>
+    <div class="card"><h3>{{Plimbare scurtă||Short walk}}</h3><div class="amt">40 <small>lei</small></div><p>30 min</p></div>
+    <div class="card hi"><h3>{{Plimbare lungă||Long walk}}</h3><div class="amt">60 <small>lei</small></div><p>60 min</p></div>
+    <div class="card"><h3>{{Tura mare||Big walk}}</h3><div class="amt">80 <small>lei</small></div><p>{{90 min prin parcuri, pentru câinii energici||90 min through the parks, for energetic dogs}}</p></div>
+    <div class="card"><h3>{{Pachet 10 plimbări||10-walk pack}}</h3><div class="amt">350 <small>lei</small></div><p>{{10 × 30 min, economisești 50 lei||10 × 30 min, you save 50 lei}}</p></div>
+  </div>
+</section>
+</main>
+
+<footer class="wrap">© @@YEAR@@ Four Paws Cluj · Cluj-Napoca · <a href="tel:+40746048445">0746 048 445</a> · {{Date hartă||Map data}} © <a href="https://www.openstreetmap.org/copyright" rel="noopener">{{contribuitorii OpenStreetMap||OpenStreetMap contributors}}</a></footer>
+
+<a class="wa-float" href="@@WA@@" target="_blank" rel="noopener" aria-label="WhatsApp 0746 048 445"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa"/></svg></a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="paw" viewBox="0 0 24 24"><path fill="currentColor" d="@@PAW@@"/></symbol>
+  <symbol id="wa" viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4ZM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.9 1.9 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8Zm8.4-18.2C18.1 1.3 15.2.1 12 .1 5.5.1.1 5.5.1 12c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.7c1.7.9 3.7 1.5 5.7 1.5 6.5 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.3Z"/></symbol>
+</svg>
+
+<script>
+(() => {
+const SPOTS = @@SPOTSJSON@@;
+const lang = document.documentElement.lang;
+const L = {ro: {photo: "foto", hi: (n, d) => `Bună! Aș vrea o plimbare în ${n} (${d}).`},
+           en: {photo: "photo", hi: (n, d) => `Hi! I'd like a walk in ${n} (${d}).`}}[lang];
+const $ = id => document.getElementById(id);
+const top = $("top"), box = $("mapbox"), tip = $("tip"), panel = $("panel");
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const canHover = matchMedia("(hover: hover)").matches;
+const img = (k, i) => `/img/${k}-${i}.webp`;
+
+// routes draw when the map is on screen, then the paws start walking
+new IntersectionObserver((es, o) => {
+  if (!es[0].isIntersecting) return;
+  top.classList.add("drawn");
+  if (!reduce) setTimeout(() => top.querySelectorAll("animateMotion").forEach(a => a.beginElement()), 2400);
+  o.disconnect();
+}, {threshold: .35}).observe(top);
+
+let current = null;
+function openSpot(k) {
+  current = k;
+  const s = SPOTS[k], t = s[lang];
+  tip.classList.remove("show");
+  document.querySelectorAll(".spot,.chips button").forEach(g => g.classList.toggle("on", g.dataset.k === k));
+  $("p-name").textContent = s.name;
+  $("p-tags").innerHTML = t.tags.map(x => `<span>${x}</span>`).join("");
+  $("p-desc").textContent = t.desc;
+  $("p-price").textContent = s.price + " lei";
+  $("p-dur").textContent = "/ " + t.dur;
+  panel.querySelectorAll(".ph").forEach((p, i) => { p.src = img(k, i + 1); p.alt = `${s.name}, ${L.photo} ${i + 1}`; });
+  $("p-wa").href = "https://wa.me/40746048445?text=" + encodeURIComponent(L.hi(s.name, t.dur));
+  panel.classList.add("open");
+}
+function closePanel() {
+  panel.classList.remove("open"); current = null;
+  document.querySelectorAll(".spot,.chips button").forEach(g => g.classList.remove("on"));
+}
+document.querySelectorAll(".spot").forEach(g => {
+  const s = SPOTS[g.dataset.k];
+  if (canHover) {
+    g.addEventListener("mouseenter", () => {
+      const r = g.querySelector(".ring").getBoundingClientRect(), b = box.getBoundingClientRect();
+      tip.style.left = (r.left + r.width / 2 - b.left) + "px";
+      tip.style.top = (r.top - b.top) + "px";
+      tip.querySelector(".ph").src = img(g.dataset.k, 1);
+      tip.querySelector("b").textContent = s.name;
+      tip.querySelector("small").textContent = s[lang].dur + " · " + s.price + " lei";
+      tip.classList.add("show");
+    });
+    g.addEventListener("mouseleave", () => tip.classList.remove("show"));
+  }
+  g.addEventListener("click", () => openSpot(g.dataset.k));
+  g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openSpot(g.dataset.k); } });
+});
+document.querySelectorAll(".chips button").forEach(b => b.onclick = () => openSpot(b.dataset.k));
+$("px").onclick = closePanel;
+addEventListener("keydown", e => { if (e.key === "Escape" && current) closePanel(); });
+
+// paw trail: gray paws, toes down, each turns black once it is above 60% of the screen
+const trail = $("trail");
+let paws = [], ticking = false;
+function paint() {
+  const line = scrollY + innerHeight * .6;
+  for (const p of paws) p.el.classList.toggle("on", p.y < line);
+  ticking = false;
+}
+function buildTrail() {
+  trail.innerHTML = ""; paws = [];
+  const h = document.documentElement.scrollHeight;
+  trail.style.height = h + "px";
+  for (let y = 140, i = 0; y < h - 100; y += 70, i++) {
+    const el = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    el.setAttribute("viewBox", "0 0 24 24");
+    el.innerHTML = '<use href="#paw"/>';
+    el.style.top = y + "px";
+    el.style.left = (i % 2 ? 40 : 0) + "%";
+    el.style.setProperty("--rot", (i % 2 ? 192 : 168) + "deg");
+    trail.appendChild(el); paws.push({el, y});
+  }
+  paint();
+}
+addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }, {passive: true});
+addEventListener("resize", buildTrail);
+addEventListener("load", buildTrail);
+})();
+</script>
+</body>
+</html>

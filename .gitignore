@@ -1,0 +1,7 @@
+.DS_Store
+_site/
+.playwright-mcp/
+tools/map/osm/
+tools/images/raw/
+.env
+.env.*

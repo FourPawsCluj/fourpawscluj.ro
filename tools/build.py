@@ -1,0 +1,110 @@
+"""Builds the site into _site/ (what GitHub Pages publishes).
+
+    python3 -I tools/build.py
+
+Inputs: src/page.html (one template for both languages), src/spots.json (map parks),
+tools/map/map.json (map shapes from tools/map/gen.py), src/static/ (icons, robots, CNAME…).
+Text in the template is written {{Romanian||English}}; @@NAME@@ marks values filled in here.
+"""
+import datetime, html, json, os, re, shutil, sys, urllib.parse
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUT = os.path.join(ROOT, '_site')
+SITE = 'https://fourpawscluj.ro'
+PHONE = '40746048445'
+VIEWBOX = (100, 30, 880, 490)  # x, y, w, h: the city, without the forests
+PAW = ('M12 13.5c-2.6 0-5.5 2.6-5.5 5 0 1.6 1.3 2.5 2.8 2.5 1.2 0 1.8-.6 2.7-.6s1.5.6 2.7.6c1.5 0 2.8-.9 2.8-2.5 '
+       '0-2.4-2.9-5-5.5-5ZM6.2 12.3c1.3-.4 1.9-2 1.4-3.5-.5-1.6-1.9-2.5-3.2-2.1-1.3.4-1.9 2-1.4 3.5.5 1.6 1.9 2.5 '
+       '3.2 2.1Zm11.6 0c1.3.4 2.7-.5 3.2-2.1.5-1.5-.1-3.1-1.4-3.5-1.3-.4-2.7.5-3.2 2.1-.5 1.5.1 3.1 1.4 3.5ZM9.4 '
+       '8.4c1.4 0 2.4-1.5 2.4-3.3S10.8 2 9.4 2 7 3.4 7 5.1s1 3.3 2.4 3.3Zm5.2 0c1.4 0 2.4-1.5 2.4-3.3S16 2 14.6 '
+       '2s-2.4 1.4-2.4 3.1 1 3.3 2.4 3.3Z')
+PRICES = [  # (ro name, en name, lei, minutes) — keep in step with the price cards in page.html
+    ('Prima plimbare', 'Trial walk', 30, 30), ('Plimbare scurtă', 'Short walk', 40, 30),
+    ('Plimbare lungă', 'Long walk', 60, 60), ('Tura mare', 'Big walk', 80, 90),
+    ('Pachet 10 plimbări', '10-walk pack', 350, 300),
+]
+
+
+def read(*p):
+    with open(os.path.join(ROOT, *p), encoding='utf-8') as f:
+        return f.read()
+
+
+def wa(text):
+    return f'https://wa.me/{PHONE}?text=' + urllib.parse.quote(text)
+
+
+def pick(src, lang):
+    i = 0 if lang == 'ro' else 1
+    return re.sub(r'\{\{(.*?)\|\|(.*?)\}\}', lambda m: m.group(i + 1), src, flags=re.S)
+
+
+def map_parts(m, spots):
+    defs, routes, marks, chips = [], [], [], []
+    for i, (k, r) in enumerate(m['routes'].items()):
+        name = html.escape(spots[k]['name'])
+        defs.append(f'<path id="r-{k}" d="{r["d"]}"/>'
+                    f'<mask id="m-{k}" maskUnits="userSpaceOnUse" x="-200" y="-200" width="1400" height="1400">'
+                    f'<path class="route-mask" pathLength="1" d="{r["d"]}"/></mask>')
+        routes.append(f'<path class="route-base" mask="url(#m-{k})" d="{r["d"]}"/>'
+                      f'<g class="walker" aria-hidden="true"><circle r="10"/><path transform="translate(-6 -6) scale(.5)" d="{PAW}"/>'
+                      f'<animateMotion begin="indefinite" dur="{(12 + i * 2) * (2 if r.get("open") else 1)}s" repeatCount="indefinite"'
+                      f'{" keyPoints=\"0;1;0\" keyTimes=\"0;.5;1\" calcMode=\"linear\"" if r.get("open") else ""}><mpath href="#r-{k}"/></animateMotion></g>')
+        x, y = r['c']
+        marks.append(f'<g class="spot" data-k="{k}" tabindex="0" role="button" aria-label="{name}" transform="translate({x} {y})">'
+                     f'<circle class="hit" r="34"/><circle class="pulse" r="16"/><circle class="ring" r="14"/><circle class="core" r="5"/>'
+                     + (f'<text x="-22" y="6" text-anchor="end">{name}</text></g>' if spots[k].get('label') == 'left'
+                        else f'<text x="22" y="6">{name}</text></g>'))
+        chips.append(f'<button type="button" data-k="{k}">{name}</button>')
+    return ''.join(defs), '\n'.join(routes), '\n'.join(marks), ''.join(chips)
+
+
+def jsonld(lang, url):
+    return json.dumps({
+        '@context': 'https://schema.org', '@type': 'LocalBusiness', '@id': SITE + '/#business',
+        'name': 'Four Paws Cluj', 'url': url, 'image': SITE + '/og-image.png',
+        'telephone': '+' + PHONE, 'priceRange': '30–350 RON',
+        'description': 'Plimbări pentru câini în Cluj-Napoca.' if lang == 'ro' else 'Dog walking in Cluj-Napoca.',
+        'areaServed': {'@type': 'City', 'name': 'Cluj-Napoca'},
+        'makesOffer': [{'@type': 'Offer', 'name': ro if lang == 'ro' else en, 'price': lei, 'priceCurrency': 'RON'}
+                       for ro, en, lei, _ in PRICES],
+    }, ensure_ascii=False)
+
+
+def build():
+    m = json.loads(read('tools', 'map', 'map.json'))
+    spots = json.loads(read('src', 'spots.json'))
+    if set(spots) != set(m['routes']):
+        sys.exit(f'spots.json {sorted(spots)} and map.json routes {sorted(m["routes"])} differ')
+    defs, routes, marks, chips = map_parts(m, spots)
+    tpl = read('src', 'page.html')
+    shutil.rmtree(OUT, ignore_errors=True)
+    shutil.copytree(os.path.join(ROOT, 'src', 'static'), OUT)
+    for lang, path in (('ro', ''), ('en', 'en/')):
+        url = f'{SITE}/{path}'
+        hello = 'Bună! Aș vrea o plimbare pentru câinele meu.' if lang == 'ro' else "Hi! I'd like a walk for my dog."
+        vals = {
+            'URL': url, 'SITE': SITE, 'ROOT': '/', 'HOME': '/' + path,
+            'OTHER': '/en/' if lang == 'ro' else '/', 'WA': html.escape(wa(hello)),
+            'VIEWBOX': ' '.join(map(str, VIEWBOX)), 'ROUTEDEFS': defs, 'ROUTES': routes,
+            'SPOTS': marks, 'CHIPS': chips, 'PAW': PAW,
+            'SPOTSJSON': json.dumps(spots, ensure_ascii=False), 'JSONLD': jsonld(lang, url),
+            'YEAR': str(datetime.date.today().year),
+            **{'L_' + k: v for k, v in m['layers'].items()},
+        }
+        page = pick(tpl, lang)
+        page = re.sub(r'@@(\w+)@@', lambda x: vals[x.group(1)], page)
+        os.makedirs(os.path.join(OUT, path), exist_ok=True)
+        with open(os.path.join(OUT, path, 'index.html'), 'w', encoding='utf-8') as f:
+            f.write(page)
+        print(f'{path or "/"}index.html  {len(page.encode()) // 1024} KB')
+    today = datetime.date.today().isoformat()
+    alt = ''.join(f'<xhtml:link rel="alternate" hreflang="{h}" href="{SITE}/{p}"/>' for h, p in (('ro', ''), ('en', 'en/')))
+    urls = ''.join(f'<url><loc>{SITE}/{p}</loc><lastmod>{today}</lastmod>{alt}</url>' for p in ('', 'en/'))
+    with open(os.path.join(OUT, 'sitemap.xml'), 'w', encoding='utf-8') as f:
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+                f'xmlns:xhtml="http://www.w3.org/1999/xhtml">{urls}</urlset>\n')
+
+
+if __name__ == '__main__':
+    build()

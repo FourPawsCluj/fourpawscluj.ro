@@ -1,0 +1,195 @@
+{
+ "central": {
+  "name": "Parcul Central",
+  "price": 40,
+  "ro": {
+   "dur": "30 min",
+   "tags": [
+    "lac",
+    "alei umbrite",
+    "câini mici și seniori"
+   ],
+   "desc": "Tura clasică: în jurul lacului și pe aleile umbrite de lângă Casino. Liniștit dimineața devreme."
+  },
+  "en": {
+   "dur": "30 min",
+   "tags": [
+    "lake",
+    "shady paths",
+    "small & senior dogs"
+   ],
+   "desc": "The classic loop: around the lake and along the shady paths by the Casino. Quiet early in the morning."
+  }
+ },
+ "babes": {
+  "name": "Parcul Babeș",
+  "price": 60,
+  "ro": {
+   "dur": "60 min",
+   "tags": [
+    "alei lungi",
+    "lângă Someș",
+    "câini energici"
+   ],
+   "desc": "Alei lungi și umbrite lângă Someș, cu mult loc de mers. Bun pentru câinii care au energie de consumat."
+  },
+  "en": {
+   "dur": "60 min",
+   "tags": [
+    "long paths",
+    "by the Someș",
+    "energetic dogs"
+   ],
+   "desc": "Long shady paths by the Someș river, with plenty of room. Good for dogs with energy to burn."
+  }
+ },
+ "feroviarilor": {
+  "name": "Parcul Feroviarilor",
+  "price": 40,
+  "ro": {
+   "dur": "30 min",
+   "tags": [
+    "aproape de centru",
+    "liniștit"
+   ],
+   "desc": "Parc mic și liniștit, potrivit pentru o plimbare rapidă la prânz."
+  },
+  "en": {
+   "dur": "30 min",
+   "tags": [
+    "near the centre",
+    "quiet"
+   ],
+   "desc": "Small, quiet park, good for a quick lunchtime walk."
+  }
+ },
+ "armatura": {
+  "name": "Parcul Armătura",
+  "price": 40,
+  "ro": {
+   "dur": "30 min",
+   "tags": [
+    "Mărăști",
+    "alei largi"
+   ],
+   "desc": "Parc în Mărăști, cu alei largi și zone verzi. Plimbare scurtă, aproape de casă."
+  },
+  "en": {
+   "dur": "30 min",
+   "tags": [
+    "Mărăști",
+    "wide paths"
+   ],
+   "desc": "A park in Mărăști with wide paths and green lawns. A short walk close to home."
+  }
+ },
+ "iulius": {
+  "name": "Iulius Parc",
+  "price": 40,
+  "ro": {
+   "dur": "30 min",
+   "tags": [
+    "lac",
+    "teren plat",
+    "mult spațiu"
+   ],
+   "desc": "Alei largi în jurul lacului Gheorgheni, teren plat, bun pentru câinii care trag de lesă."
+  },
+  "en": {
+   "dur": "30 min",
+   "tags": [
+    "lake",
+    "flat",
+    "lots of space"
+   ],
+   "desc": "Wide paths around Lake Gheorgheni, flat ground, good for dogs that pull on the leash."
+  }
+ },
+ "vlaicu": {
+  "name": "Parcul Aurel Vlaicu",
+  "price": 60,
+  "ro": {
+   "dur": "60 min",
+   "tags": [
+    "lacuri",
+    "Gheorgheni",
+    "tură lungă"
+   ],
+   "desc": "Printre lacurile din Gheorgheni, cu alei lungi pe malul apei. Potrivit pentru o tură lungă."
+  },
+  "en": {
+   "dur": "60 min",
+   "tags": [
+    "lakes",
+    "Gheorgheni",
+    "long walk"
+   ],
+   "desc": "Among the Gheorgheni lakes, with long paths along the water. Good for a long walk."
+  },
+  "label": "left"
+ },
+ "detunata": {
+  "name": "Parcul Detunata",
+  "price": 40,
+  "ro": {
+   "dur": "30 min",
+   "tags": [
+    "Gheorgheni",
+    "liniștit",
+    "câini mici și seniori"
+   ],
+   "desc": "Parc de cartier liniștit în Gheorgheni, potrivit pentru câini mici și seniori."
+  },
+  "en": {
+   "dur": "30 min",
+   "tags": [
+    "Gheorgheni",
+    "quiet",
+    "small & senior dogs"
+   ],
+   "desc": "A quiet neighbourhood park in Gheorgheni, good for small and senior dogs."
+  }
+ },
+ "colina": {
+  "name": "Parcul Colina",
+  "price": 40,
+  "ro": {
+   "dur": "30 min",
+   "tags": [
+    "Mănăștur",
+    "umbră"
+   ],
+   "desc": "Parc în Mănăștur, cu umbră și alei liniștite. Plimbare scurtă, aproape de casă."
+  },
+  "en": {
+   "dur": "30 min",
+   "tags": [
+    "Mănăștur",
+    "shade"
+   ],
+   "desc": "A park in Mănăștur with shade and quiet paths. A short walk close to home."
+  }
+ },
+ "somes": {
+  "name": "Malul Someșului",
+  "price": 60,
+  "ro": {
+   "dur": "60 min",
+   "tags": [
+    "pe malul râului",
+    "dus-întors",
+    "câini energici"
+   ],
+   "desc": "Pe aleea de pe malul Someșului, dus-întors. Mult de mirosit și loc de mers în ritm bun."
+  },
+  "en": {
+   "dur": "60 min",
+   "tags": [
+    "riverside",
+    "there and back",
+    "energetic dogs"
+   ],
+   "desc": "Along the Someș riverside path, there and back. Lots to sniff and room to walk at a good pace."
+  }
+ }
+}
