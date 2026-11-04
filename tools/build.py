@@ -20,6 +20,7 @@ PAW = ('M12 13.5c-2.6 0-5.5 2.6-5.5 5 0 1.6 1.3 2.5 2.8 2.5 1.2 0 1.8-.6 2.7-.6s
        '2s-2.4 1.4-2.4 3.1 1 3.3 2.4 3.3Z')
 SOCIAL = [  # (name, url): shown as icons in the footer and as sameAs in the structured data
     ('Instagram', 'https://www.instagram.com/fourpawscluj/'),
+    ('LinkedIn', 'https://www.linkedin.com/in/fourpawscluj'),
 ]
 ICONS = {
     'Instagram': '<rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>'
