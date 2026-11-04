@@ -285,7 +285,8 @@ const L = {ro: {photo: "foto", hi: (n, d) => `Bună! Aș vrea o plimbare în ${n
 const $ = id => document.getElementById(id);
 const top = $("top"), box = $("mapbox"), tip = $("tip"), panel = $("panel");
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const canHover = matchMedia("(hover: hover)").matches;
+// the hover card is for a mouse on a wide screen; phones (and narrow windows) use the bottom sheet only
+const wide = matchMedia("(min-width: 821px)");
 const img = (k, i) => `/img/${k}-${i}.webp`;
 
 // routes draw when the map is on screen, then the paws start walking
@@ -312,13 +313,14 @@ function openSpot(k) {
   panel.classList.add("open");
 }
 function closePanel() {
-  panel.classList.remove("open"); current = null;
+  panel.classList.remove("open"); tip.classList.remove("show"); current = null;
   document.querySelectorAll(".spot,.chips button").forEach(g => g.classList.remove("on"));
 }
 document.querySelectorAll(".spot").forEach(g => {
   const s = SPOTS[g.dataset.k];
-  if (canHover) {
-    g.addEventListener("mouseenter", () => {
+  {
+    g.addEventListener("pointerenter", e => {
+      if (e.pointerType !== "mouse" || !wide.matches) return;
       tip.querySelector(".ph").src = img(g.dataset.k, 1);
       tip.querySelector("b").textContent = s.name;
       tip.querySelector("small").textContent = s[lang].dur + " · " + s.price + " lei";
@@ -331,7 +333,7 @@ document.querySelectorAll(".spot").forEach(g => {
       tip.style.top = (above ? r.top - b.top - gap - h : r.bottom - b.top + gap) + "px";
       tip.classList.add("show");
     });
-    g.addEventListener("mouseleave", () => tip.classList.remove("show"));
+    g.addEventListener("pointerleave", () => tip.classList.remove("show"));
   }
   g.addEventListener("click", () => openSpot(g.dataset.k));
   g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openSpot(g.dataset.k); } });
