@@ -18,6 +18,22 @@ PAW = ('M12 13.5c-2.6 0-5.5 2.6-5.5 5 0 1.6 1.3 2.5 2.8 2.5 1.2 0 1.8-.6 2.7-.6s
        '3.2 2.1Zm11.6 0c1.3.4 2.7-.5 3.2-2.1.5-1.5-.1-3.1-1.4-3.5-1.3-.4-2.7.5-3.2 2.1-.5 1.5.1 3.1 1.4 3.5ZM9.4 '
        '8.4c1.4 0 2.4-1.5 2.4-3.3S10.8 2 9.4 2 7 3.4 7 5.1s1 3.3 2.4 3.3Zm5.2 0c1.4 0 2.4-1.5 2.4-3.3S16 2 14.6 '
        '2s-2.4 1.4-2.4 3.1 1 3.3 2.4 3.3Z')
+SOCIAL = [  # (name, url): shown as icons in the footer and as sameAs in the structured data
+    ('Instagram', 'https://www.instagram.com/fourpawscluj/'),
+]
+ICONS = {
+    'Instagram': '<rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>'
+                 '<circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/>',
+    'Facebook': '<path fill="currentColor" d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8z"/>',
+    'LinkedIn': '<path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zm7 0h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/>',
+}
+
+
+def social_links():
+    return ''.join(f'<a class="soc" href="{u}" rel="noopener me" target="_blank" aria-label="{n}">'
+                   f'<svg viewBox="0 0 24 24" aria-hidden="true">{ICONS[n]}</svg></a>' for n, u in SOCIAL)
+
+
 PRICES = [  # (ro name, en name, lei, minutes) — keep in step with the price cards in page.html
     ('Prima plimbare', 'Trial walk', 30, 30), ('Plimbare scurtă', 'Short walk', 40, 30),
     ('Plimbare lungă', 'Long walk', 60, 60), ('Tura mare', 'Big walk', 80, 90),
@@ -72,6 +88,7 @@ def jsonld(lang, url):
         'telephone': '+' + PHONE, 'priceRange': '30–350 RON',
         'description': 'Plimbări pentru câini în Cluj-Napoca.' if lang == 'ro' else 'Dog walking in Cluj-Napoca.',
         'areaServed': {'@type': 'City', 'name': 'Cluj-Napoca'},
+        'sameAs': [u for _, u in SOCIAL],
         'makesOffer': [{'@type': 'Offer', 'name': ro if lang == 'ro' else en, 'price': lei, 'priceCurrency': 'RON'}
                        for ro, en, lei, _ in PRICES],
     }, ensure_ascii=False)
@@ -93,7 +110,7 @@ def build():
             'URL': url, 'SITE': SITE, 'ROOT': '/', 'HOME': '/' + path,
             'OTHER': '/en/' if lang == 'ro' else '/', 'WA': html.escape(wa(hello)),
             'VIEWBOX': ' '.join(map(str, VIEWBOX)), 'ROUTEDEFS': defs, 'ROUTES': routes,
-            'SPOTS': marks, 'CHIPS': chips, 'PAW': PAW,
+            'SPOTS': marks, 'CHIPS': chips, 'PAW': PAW, 'SOCIALLINKS': social_links(),
             'SPOTSJSON': json.dumps(spots, ensure_ascii=False), 'JSONLD': jsonld(lang, url),
             'YEAR': str(datetime.date.today().year),
             **{'L_' + k: v for k, v in m['layers'].items()},

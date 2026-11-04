@@ -137,6 +137,9 @@ nav{display:flex;align-items:center;justify-content:space-between;padding-block:
 
 footer{padding-block:50px calc(110px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:14px}
 footer a{color:var(--olive);font-weight:700}
+.socs{display:flex;gap:10px;margin-bottom:14px}
+.soc{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--olive);color:var(--lime)}
+.soc svg{width:22px;height:22px}
 .wa-float{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 25px rgba(0,0,0,.2)}
 .wa-float svg{width:32px;height:32px;fill:#fff}
 
@@ -267,7 +270,7 @@ footer a{color:var(--olive);font-weight:700}
 </section>
 </main>
 
-<footer class="wrap">© @@YEAR@@ Four Paws Cluj · Cluj-Napoca · <a href="tel:+40746048445">0746 048 445</a> · {{Date hartă||Map data}} © <a href="https://www.openstreetmap.org/copyright" rel="noopener">{{contribuitorii OpenStreetMap||OpenStreetMap contributors}}</a></footer>
+<footer class="wrap"><div class="socs">@@SOCIALLINKS@@</div>© @@YEAR@@ Four Paws Cluj · Cluj-Napoca · <a href="tel:+40746048445">0746 048 445</a> · {{Date hartă||Map data}} © <a href="https://www.openstreetmap.org/copyright" rel="noopener">{{contribuitorii OpenStreetMap||OpenStreetMap contributors}}</a></footer>
 
 <a class="wa-float" href="@@WA@@" target="_blank" rel="noopener" aria-label="WhatsApp 0746 048 445"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa"/></svg></a>
 
