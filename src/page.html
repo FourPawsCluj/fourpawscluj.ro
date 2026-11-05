@@ -145,7 +145,13 @@ nav{display:flex;align-items:center;justify-content:space-between;padding-block:
 .checks{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:10px}
 .checks li{padding-left:28px;position:relative}
 .checks li::before{content:"✓";position:absolute;left:0;top:-1px;width:20px;height:20px;border-radius:50%;background:var(--lime);color:var(--olive);font-weight:800;font-size:13px;display:grid;place-items:center}
-.about{padding-block:70px}
+.about{padding-block:70px;display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:start}
+.about .cards{grid-template-columns:1fr 1fr}
+.me img{width:100%;height:auto;display:block;object-fit:cover;border-radius:var(--r);background:#eadfce}
+.me-big{aspect-ratio:1}
+.me-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.me-row img{aspect-ratio:1;border-radius:14px}
+@media (max-width:820px){.about{grid-template-columns:1fr;gap:28px}}
 .about-txt{max-width:46em;margin-bottom:24px}
 .about-txt p{color:var(--muted);font-size:18px;margin:0 0 14px}
 .hero p a{color:var(--olive);font-weight:700}
@@ -299,6 +305,15 @@ footer a{color:var(--olive);font-weight:700}
 </section>
 
 <section class="wrap about" id="despre">
+  <div class="me">
+    <img class="me-big" src="/img/emilia-1.webp" width="720" height="720" loading="lazy" alt="{{Emilia îmbrățișând un cocker spaniel||Emilia hugging a cocker spaniel}}">
+    <div class="me-row">
+      <img src="/img/emilia-2.webp" width="480" height="480" loading="lazy" alt="{{Emilia cu un pui de pisică pe umăr||Emilia with a kitten on her shoulder}}">
+      <img src="/img/emilia-3.webp" width="480" height="480" loading="lazy" alt="{{Emilia cu pisica ei pe canapea||Emilia with her cat on the sofa}}">
+      <img src="/img/emilia-4.webp" width="480" height="480" loading="lazy" alt="{{Emilia sărutând un cocker spaniel||Emilia kissing a cocker spaniel}}">
+    </div>
+  </div>
+  <div>
   <div class="sec-head"><h2>{{Despre mine||About me}}</h2></div>
   <div class="about-txt">
     <p>{{Sunt Emilia, am 26 de ani și sunt studentă în Cluj-Napoca. Am crescut înconjurată de animale: câini, pisici, papagali, iepuri și reptile. Acum am două pisici, așa că știu cât de greu e să pleci și să le lași acasă.||I'm Emilia, I'm 26 and a student in Cluj-Napoca. I grew up surrounded by animals: dogs, cats, parrots, rabbits and reptiles. Today I have two cats, so I know how hard it is to leave and not take them with you.}}</p>
@@ -309,6 +324,7 @@ footer a{color:var(--olive);font-weight:700}
     <div class="card"><h3>{{Păsări||Birds}}</h3><p>{{16 ani: o nimfă, peruși, găini și chiar un porumbel.||16 years: a cockatiel, budgies, chickens and even a pigeon.}}</p></div>
     <div class="card"><h3>{{Iepuri||Rabbits}}</h3><p>{{Doi iepuri salvați, îngrijiți atent în ultimii lor trei ani.||Two rescued rabbits, cared for closely through their last three years.}}</p></div>
     <div class="card"><h3>{{Reptile||Reptiles}}</h3><p>{{Un an cu gecko, dragoni bărboși și șerpi.||A year with geckos, bearded dragons and snakes.}}</p></div>
+  </div>
   </div>
 </section>
 
