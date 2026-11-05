@@ -39,6 +39,8 @@ PRICES = [  # (ro name, en name, lei, minutes) — keep in step with the price c
     ('Prima plimbare', 'Trial walk', 30, 30), ('Plimbare scurtă', 'Short walk', 40, 30),
     ('Plimbare lungă', 'Long walk', 60, 60), ('Tura mare', 'Big walk', 80, 90),
     ('Pachet 10 plimbări', '10-walk pack', 350, 300),
+    ('Vizită scurtă', 'Short visit', 40, 30), ('Vizită de o oră', 'One-hour visit', 60, 60),
+    ('2 vizite pe zi', '2 visits a day', 100, 120), ('Oră în plus', 'Extra hour', 20, 60),
 ]
 
 
@@ -86,8 +88,8 @@ def jsonld(lang, url):
     return json.dumps({
         '@context': 'https://schema.org', '@type': 'LocalBusiness', '@id': SITE + '/#business',
         'name': 'Four Paws Cluj', 'url': url, 'image': SITE + '/og-image.png',
-        'telephone': '+' + PHONE, 'priceRange': '30–350 RON',
-        'description': 'Plimbări pentru câini în Cluj-Napoca.' if lang == 'ro' else 'Dog walking in Cluj-Napoca.',
+        'telephone': '+' + PHONE, 'priceRange': '20–350 RON',
+        'description': 'Plimbări pentru câini și vizite la domiciliu pentru animale în Cluj-Napoca.' if lang == 'ro' else 'Dog walking and pet home visits in Cluj-Napoca.',
         'areaServed': {'@type': 'City', 'name': 'Cluj-Napoca'},
         'sameAs': [u for _, u in SOCIAL],
         'makesOffer': [{'@type': 'Offer', 'name': ro if lang == 'ro' else en, 'price': lei, 'priceCurrency': 'RON'}
@@ -110,6 +112,8 @@ def build():
         vals = {
             'URL': url, 'SITE': SITE, 'ROOT': '/', 'HOME': '/' + path,
             'OTHER': '/en/' if lang == 'ro' else '/', 'WA': html.escape(wa(hello)),
+            'WAVISIT': html.escape(wa('Bună! Aș vrea o vizită la domiciliu pentru animalul meu.' if lang == 'ro'
+                                      else "Hi! I'd like a home visit for my pet.")),
             'VIEWBOX': ' '.join(map(str, VIEWBOX)), 'ROUTEDEFS': defs, 'ROUTES': routes,
             'SPOTS': marks, 'CHIPS': chips, 'PAW': PAW, 'SOCIALLINKS': social_links(),
             'SPOTSJSON': json.dumps(spots, ensure_ascii=False), 'JSONLD': jsonld(lang, url),

@@ -1,6 +1,6 @@
 # fourpawscluj.ro
 
-One-page website for a dog walker in Cluj-Napoca. Visitors book by WhatsApp; there is no form, no account, no backend. Hosted on GitHub Pages at https://fourpawscluj.ro.
+One-page website for dog walking and pet home visits (cats, birds, rabbits, hamsters, reptiles) in Cluj-Napoca; the "Despre mine" section presents Emilia. Visitors book by WhatsApp; there is no form, no account, no backend. Hosted on GitHub Pages at https://fourpawscluj.ro.
 
 Before any visual or text change, read `DESIGN.md`: it holds the colors, type, page order, map behavior, prices and copy.
 

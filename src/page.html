@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{{Plimbări câini Cluj-Napoca · Four Paws Cluj||Dog walking in Cluj-Napoca · Four Paws Cluj}}</title>
-<meta name="description" content="{{Plimbări pentru câini în Cluj-Napoca, prin parcurile din oraș. Preluare de acasă inclusă, de la 40 lei / 30 min. Programare pe WhatsApp: 0746 048 445.||Dog walks in Cluj-Napoca, through the city's parks. Pickup from home included, from 40 lei / 30 min. Book on WhatsApp: 0746 048 445.}}">
+<title>{{Plimbări câini și vizite la domiciliu, Cluj-Napoca · Four Paws Cluj||Dog walking and home visits in Cluj-Napoca · Four Paws Cluj}}</title>
+<meta name="description" content="{{Plimbări pentru câini în Cluj-Napoca, prin parcurile din oraș. Preluare de acasă inclusă, de la 40 lei / 30 min. Vizite la domiciliu pentru pisici, păsări, iepuri și reptile. Programare pe WhatsApp: 0746 048 445.||Dog walks in Cluj-Napoca, through the city's parks. Pickup from home included, from 40 lei / 30 min. Home visits for cats, birds, rabbits and reptiles. Book on WhatsApp: 0746 048 445.}}">
 <link rel="canonical" href="@@URL@@">
 <link rel="alternate" hreflang="ro" href="@@SITE@@/">
 <link rel="alternate" hreflang="en" href="@@SITE@@/en/">
@@ -134,6 +134,16 @@ nav{display:flex;align-items:center;justify-content:space-between;padding-block:
 .card .amt{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:44px;color:var(--olive)}
 .card .amt small{font-size:18px}
 .card p{margin:0;font-size:15px;opacity:.85}
+.prices .sub{font-size:26px;font-weight:600;margin:28px 0 14px}
+.pets{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
+.pets span{background:var(--lime);color:var(--olive);border-radius:999px;padding:6px 14px;font-weight:700;font-size:15px}
+.checks{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.checks li{padding-left:28px;position:relative}
+.checks li::before{content:"✓";position:absolute;left:0;top:-1px;width:20px;height:20px;border-radius:50%;background:var(--lime);color:var(--olive);font-weight:800;font-size:13px;display:grid;place-items:center}
+.about{padding-block:70px}
+.about-txt{max-width:46em;margin-bottom:24px}
+.about-txt p{color:var(--muted);font-size:18px;margin:0 0 14px}
+.hero p a{color:var(--olive);font-weight:700}
 
 footer{padding-block:50px calc(110px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:14px}
 footer a{color:var(--olive);font-weight:700}
@@ -181,7 +191,7 @@ footer a{color:var(--olive);font-weight:700}
   <header class="hero">
     <div>
       <h1>{{Cluj, văzut de la <em>30&nbsp;cm.</em>||Cluj, seen from <em>30&nbsp;cm</em> up.}}</h1>
-      <p>{{Plimbări pentru câini în Cluj-Napoca, prin parcurile din oraș pe care câinele tău le va iubi. Un mesaj pe WhatsApp și pornim.||Dog walks in Cluj-Napoca, through the city parks your dog will love. One message on WhatsApp and we're on our way.}}</p>
+      <p>{{Plimbări pentru câini în Cluj-Napoca, prin parcurile din oraș pe care câinele tău le va iubi. Și <a href="#vizite">vizite la domiciliu</a> pentru pisici, păsări, iepuri, hamsteri și reptile. Un mesaj pe WhatsApp și pornim.||Dog walks in Cluj-Napoca, through the city parks your dog will love. And <a href="#vizite">home visits</a> for cats, birds, rabbits, hamsters and reptiles. One message on WhatsApp and we're on our way.}}</p>
       <a class="btn orange" href="@@WA@@" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#wa"/></svg>{{Scrie-ne: 0746 048 445||Message us: 0746 048 445}}</a>
     </div>
     <div class="eye">
@@ -258,14 +268,54 @@ footer a{color:var(--olive);font-weight:700}
   </div>
 </section>
 
+<section class="wrap report visits" id="vizite">
+  <div>
+    <h2>{{Vizite la domiciliu||Home visits}}</h2>
+    <p>{{Pleci în vacanță sau stai mult la birou? Vin la tine acasă și am grijă de animalul tău cât ești plecat. După fiecare vizită primești poze pe WhatsApp.||Going on holiday or stuck at work? I come to your home and look after your pet while you're away. After every visit you get photos on WhatsApp.}}</p>
+    <div class="pets"><span>{{Pisici||Cats}}</span><span>{{Păsări||Birds}}</span><span>{{Iepuri||Rabbits}}</span><span>{{Hamsteri||Hamsters}}</span><span>{{Reptile||Reptiles}}</span></div>
+    <a class="btn orange" href="@@WAVISIT@@" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#wa"/></svg>{{Vreau o vizită||Book a visit}}</a>
+  </div>
+  <div class="card">
+    <h3>{{Ce fac la o vizită||What a visit covers}}</h3>
+    <ul class="checks">
+      <li>{{Mâncare și apă proaspătă||Food and fresh water}}</li>
+      <li>{{Litieră, cușcă sau terariu curat||Clean litter box, cage or terrarium}}</li>
+      <li>{{Medicamente, la ora stabilită||Medication, on schedule}}</li>
+      <li>{{Joacă și companie||Play and company}}</li>
+    </ul>
+  </div>
+</section>
+
+<section class="wrap about" id="despre">
+  <div class="sec-head"><h2>{{Despre mine||About me}}</h2></div>
+  <div class="about-txt">
+    <p>{{Sunt Emilia, am 26 de ani și sunt studentă în Cluj-Napoca. Am crescut înconjurată de animale: câini, pisici, papagali, iepuri și reptile. Acum am două pisici, așa că știu cât de greu e să pleci și să le lași acasă.||I'm Emilia, I'm 26 and a student in Cluj-Napoca. I grew up surrounded by animals: dogs, cats, parrots, rabbits and reptiles. Today I have two cats, so I know how hard it is to leave and not take them with you.}}</p>
+    <p>{{Mama mea e medic veterinar, iar una dintre pisicile mele are astm: îngrijind-o am învățat răbdarea, rutina și medicamentele date corect. Am lucrat și ca asistentă de toaletaj canin, unde am învățat îngrijirea blănii pentru fiecare rasă.||My mother is a vet, and one of my cats has asthma: caring for her taught me patience, routine and giving medication the right way. I've also worked as a dog grooming assistant, where I learned coat care for each breed.}}</p>
+  </div>
+  <div class="cards">
+    <div class="card"><h3>{{Câini și pisici||Dogs and cats}}</h3><p>{{De când mă știu: hrană, plimbări, toaletaj, medicamente.||All my life: feeding, walks, grooming, medication.}}</p></div>
+    <div class="card"><h3>{{Păsări||Birds}}</h3><p>{{16 ani: o nimfă, peruși, găini și chiar un porumbel.||16 years: a cockatiel, budgies, chickens and even a pigeon.}}</p></div>
+    <div class="card"><h3>{{Iepuri||Rabbits}}</h3><p>{{Doi iepuri salvați, îngrijiți atent în ultimii lor trei ani.||Two rescued rabbits, cared for closely through their last three years.}}</p></div>
+    <div class="card"><h3>{{Reptile||Reptiles}}</h3><p>{{Un an cu gecko, dragoni bărboși și șerpi.||A year with geckos, bearded dragons and snakes.}}</p></div>
+  </div>
+</section>
+
 <section class="wrap prices" id="preturi">
-  <div class="sec-head"><h2>{{Prețuri||Prices}}</h2><p>{{Preluare și aducere acasă incluse, oriunde în Cluj-Napoca.||Pickup from home and drop-off included, anywhere in Cluj-Napoca.}}</p></div>
+  <div class="sec-head"><h2>{{Prețuri||Prices}}</h2><p>{{Plimbările includ preluarea și aducerea acasă, oriunde în Cluj-Napoca.||Walks include pickup from home and drop-off, anywhere in Cluj-Napoca.}}</p></div>
+  <h3 class="sub">{{Plimbări câini||Dog walks}}</h3>
   <div class="cards">
     <div class="card"><h3>{{Prima plimbare||Trial walk}}</h3><div class="amt">30 <small>lei</small></div><p>{{30 min, ca să ne cunoaștem||30 min, so we get to know each other}}</p></div>
     <div class="card"><h3>{{Plimbare scurtă||Short walk}}</h3><div class="amt">40 <small>lei</small></div><p>30 min</p></div>
     <div class="card hi"><h3>{{Plimbare lungă||Long walk}}</h3><div class="amt">60 <small>lei</small></div><p>60 min</p></div>
     <div class="card"><h3>{{Tura mare||Big walk}}</h3><div class="amt">80 <small>lei</small></div><p>{{90 min prin parcuri, pentru câinii energici||90 min through the parks, for energetic dogs}}</p></div>
     <div class="card"><h3>{{Pachet 10 plimbări||10-walk pack}}</h3><div class="amt">350 <small>lei</small></div><p>{{10 × 30 min, economisești 50 lei||10 × 30 min, you save 50 lei}}</p></div>
+  </div>
+  <h3 class="sub">{{Vizite la domiciliu||Home visits}}</h3>
+  <div class="cards">
+    <div class="card"><h3>{{Vizită scurtă||Short visit}}</h3><div class="amt">40 <small>lei</small></div><p>30 min</p></div>
+    <div class="card"><h3>{{Vizită de o oră||One-hour visit}}</h3><div class="amt">60 <small>lei</small></div><p>{{o vizită pe zi, 60 min||one visit a day, 60 min}}</p></div>
+    <div class="card"><h3>{{2 vizite pe zi||2 visits a day}}</h3><div class="amt">100 <small>lei</small></div><p>{{câte o oră, dimineața și seara||one hour each, morning and evening}}</p></div>
+    <div class="card"><h3>{{Oră în plus||Extra hour}}</h3><div class="amt">20 <small>lei</small></div><p>{{pentru o vizită mai lungă de o oră||for a visit longer than one hour}}</p></div>
   </div>
 </section>
 </main>

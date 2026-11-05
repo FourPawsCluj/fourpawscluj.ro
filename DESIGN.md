@@ -52,10 +52,12 @@ Light theme only.
 2. **Hero, dog's-eye view**: headline "Cluj, văzut de la *30 cm.*" with "30 cm." on a lime highlight. One line under it, then the orange WhatsApp button showing the number. Right side: a photo taken at dog height (30 cm off the ground).
 3. **Map, "Traseele noastre"**: see the Map section below.
 4. **Walk report, "Raport după fiecare plimbare"** (no route map or distance: Dan has no GPS tracking): text on the left; on the right, a phone frame showing a sample WhatsApp message with a photo from the walk, dog name, park, time, pills "Pipi ✓ Caca ✓ Apă ✓", a short note, and blue ticks.
-5. **Prices**: cards, see Content. The "Plimbare lungă" card is olive with lime text (the one to look at first).
-6. **Footer**: © year, name, "Cluj-Napoca", phone, "Date hartă © contribuitorii OpenStreetMap" (required by the map data license).
-7. **Floating WhatsApp button**: bottom right, always visible.
-8. **Paw trail**: small paws down the right edge of the page, every 70px, alternating left/right, turned 180° ±12° so the toes point down (the animal walks down the page as you scroll). Gray `#CFCFCF` by default; a paw turns black `#111` once it is above 60% of the screen height, and goes back to gray when you scroll up. 0.35s color change. Decoration only (`aria-hidden`).
+5. **Home visits, "Vizite la domiciliu"** (`#vizite`, added 2026-11-05 at Emilia's request): text on the left, lime pills for the animals (pisici, păsări, iepuri, hamsteri, reptile), orange "Vreau o vizită" button (WhatsApp: "Bună! Aș vrea o vizită la domiciliu pentru animalul meu."); on the right a white card "Ce fac la o vizită" with a checklist. The hero line links to it.
+6. **About, "Despre mine"** (`#despre`): Emilia's short bio (2 paragraphs, from her own text) + 4 experience cards (câini și pisici, păsări 16 ani, iepuri, reptile). No photo until she sends a real one; never an AI photo of her.
+7. **Prices**: two rows of cards, "Plimbări câini" and "Vizite la domiciliu", see Content. The "Plimbare lungă" card is olive with lime text (the one to look at first).
+8. **Footer**: © year, name, "Cluj-Napoca", phone, "Date hartă © contribuitorii OpenStreetMap" (required by the map data license).
+9. **Floating WhatsApp button**: bottom right, always visible.
+10. **Paw trail**: small paws down the right edge of the page, every 70px, alternating left/right, turned 180° ±12° so the toes point down (the animal walks down the page as you scroll). Gray `#CFCFCF` by default; a paw turns black `#111` once it is above 60% of the screen height, and goes back to gray when you scroll up. 0.35s color change. Decoration only (`aria-hidden`).
 
 ## Map
 
@@ -101,7 +103,16 @@ Light theme only.
 | Tura mare | Big walk | 80 lei | 90 min prin parcuri, pentru câinii energici |
 | Pachet 10 plimbări | 10-walk pack | 350 lei | 10 × 30 min, economisești 50 lei |
 
-  Set from Cluj prices on 2026-11-04: 30 min at 30–50 lei, 60 min at 50–70 lei. Dan may change them.
+  Home visits (any pet; set by Emilia on 2026-11-05):
+
+| RO | EN | Price | Note |
+|---|---|---|---|
+| Vizită scurtă | Short visit | 40 lei | 30 min |
+| Vizită de o oră | One-hour visit | 60 lei | o vizită pe zi, 60 min |
+| 2 vizite pe zi | 2 visits a day | 100 lei | câte o oră, dimineața și seara |
+| Oră în plus | Extra hour | 20 lei | pentru o vizită mai lungă de o oră |
+
+  Walk prices set from Cluj prices on 2026-11-04: 30 min at 30–50 lei, 60 min at 50–70 lei. Dan may change them.
 - **Tone**: warm, short, direct; second person singular ("câinele tău"). Romanian first; English is a full translation, not a summary.
 
 ## Photos
