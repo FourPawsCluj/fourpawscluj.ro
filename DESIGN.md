@@ -72,6 +72,7 @@ Light theme only.
 - **Dots**: olive center, lime ring, park name next to it with a land-colored halo. Hit area 34 units so fingers can tap it. Keyboard focusable; Enter or Space opens the card.
 - **Hover** (mouse only): small white card above the dot with a photo, name, length and price.
 - **Click or tap**: park card. On a computer it slides in on the right inside the map; on a phone it rises from the bottom of the screen. It shows: name, 2–3 tags, 3 photos (one large, two small), one-line description, price + length, and an orange "Vreau plimbarea asta" button that opens WhatsApp with the message already filled in ("Bună! Aș vrea o plimbare în {park} ({length}).", English version when the page is in English). Closes with ×, Esc, or by opening another park.
+- **Dog pens** (added 2026-11-05): 13 small lime circles with an olive paw (r 11), one per OpenStreetMap `leisure=dog_park` in the city, under the park dots and without names or routes. Tap or Enter opens the same card in "pen mode": name "Țarc câini · {street}", tags (neighborhood, țarc împrejmuit, fără lesă), one line, WhatsApp button; no photos, no price. A legend line under the park buttons explains them. Data: `src/pens.json` (lat/lon from OSM, street names from Nominatim); `dx`/`dy` there moves a paw that a park name covers.
 - **Park buttons**: a row of pill buttons under the map, one per park, doing the same as the dots. Needed on phones, where the whole map is shown small.
 - **Spots**, public places only, never a home address:
 
@@ -93,7 +94,7 @@ Light theme only.
 
 - **Contact**: phone and WhatsApp **0746 048 445**; link `https://wa.me/40746048445?text=…`. Always write the number in full so visitors can read it and copy it.
 - **Location**: only "Cluj-Napoca". No street, no neighborhood of the walker, no home.
-- **Prices** (pickup and drop-off included, anywhere in Cluj-Napoca):
+- **Prices** (pickup and drop-off included; travel in Cluj-Napoca and Florești included; outside them, e.g. Apahida or Luna, +30 lei for every 10 km, set by Emilia on 2026-11-05):
 
 | RO | EN | Price | Note |
 |---|---|---|---|

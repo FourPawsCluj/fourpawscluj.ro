@@ -1,0 +1,96 @@
+{
+ "pen-3898877765": {
+  "name": "Drumul Sfântul Ioan",
+  "area": "Mănăștur",
+  "osm": "node/3898877765",
+  "lat": 46.74395,
+  "lon": 23.53471
+ },
+ "pen-5665655173": {
+  "name": "Bd. 1 Decembrie 1918",
+  "area": "Mănăștur",
+  "osm": "node/5665655173",
+  "lat": 46.76064,
+  "lon": 23.54365
+ },
+ "pen-5665655175": {
+  "name": "Str. Dacia",
+  "area": "Centru",
+  "osm": "node/5665655175",
+  "lat": 46.77516,
+  "lon": 23.58864
+ },
+ "pen-276584007": {
+  "name": "Str. Alexandru Vaida Voevod",
+  "area": "Gheorgheni",
+  "osm": "way/276584007",
+  "lat": 46.76852,
+  "lon": 23.63132
+ },
+ "pen-288194375": {
+  "name": "Aleea Slănic",
+  "area": "Gheorgheni",
+  "osm": "way/288194375",
+  "lat": 46.77155,
+  "lon": 23.62267
+ },
+ "pen-436358424": {
+  "name": "Parcul Detunata",
+  "area": "Gheorgheni",
+  "osm": "way/436358424",
+  "lat": 46.76457,
+  "lon": 23.62709
+ },
+ "pen-715010760": {
+  "name": "Str. Bună Ziua",
+  "area": "Bună Ziua",
+  "osm": "way/715010760",
+  "lat": 46.7493,
+  "lon": 23.6017
+ },
+ "pen-907280934": {
+  "name": "Calea Florești",
+  "area": "Mănăștur",
+  "osm": "way/907280934",
+  "lat": 46.75893,
+  "lon": 23.55262,
+  "dy": 24
+ },
+ "pen-921277289": {
+  "name": "Piața 1 Mai",
+  "area": "Bulgaria",
+  "osm": "way/921277289",
+  "lat": 46.78636,
+  "lon": 23.60452
+ },
+ "pen-942818039": {
+  "name": "Aleea Castanilor",
+  "area": "Zorilor",
+  "osm": "way/942818039",
+  "lat": 46.7567,
+  "lon": 23.57338
+ },
+ "pen-1180201397": {
+  "name": "Str. Decebal",
+  "area": "Centru",
+  "osm": "way/1180201397",
+  "lat": 46.78565,
+  "lon": 23.59525
+ },
+ "pen-1232875238": {
+  "name": "Str. Galați",
+  "area": "Între Lacuri",
+  "osm": "way/1232875238",
+  "lat": 46.77478,
+  "lon": 23.63449,
+  "dx": 34,
+  "dy": -4
+ },
+ "pen-1554764351": {
+  "name": "Str. Anina",
+  "area": "Mărăști",
+  "osm": "way/1554764351",
+  "lat": 46.78482,
+  "lon": 23.61547
+ }
+}

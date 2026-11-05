@@ -110,6 +110,16 @@ nav{display:flex;align-items:center;justify-content:space-between;padding-block:
 .panel .price b{font-family:"Bricolage Grotesque",sans-serif;font-size:38px}
 .panel p{margin:0;color:var(--muted)}
 .panel .btn{justify-content:center}
+.panel.pen-mode .gal,.panel.pen-mode .price{display:none}
+.pen{cursor:pointer;outline:none}
+.pen .hit{fill:transparent}
+.pen .pring{fill:var(--lime);stroke:var(--dot);stroke-width:2;transition:r .2s}
+.pen use{color:var(--dot)}
+.pen:hover .pring,.pen:focus-visible .pring,.pen.on .pring{r:14}
+.pen:focus-visible .pring{stroke:var(--orange)}
+.legend{display:flex;align-items:center;gap:10px;color:var(--muted);margin:14px 0 0;font-size:15px}
+.legend i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--lime);border:2px solid var(--olive);display:grid;place-items:center}
+.legend svg{width:14px;height:14px;color:var(--olive)}
 
 .report{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;padding-block:70px}
 .report p{color:var(--muted);font-size:18px}
@@ -245,6 +255,7 @@ footer a{color:var(--olive);font-weight:700}
       <svg class="map" id="top" viewBox="@@VIEWBOX@@" preserveAspectRatio="xMidYMid slice" role="group" aria-label="{{Harta Cluj-Napoca cu traseele de plimbare||Map of Cluj-Napoca with our walk routes}}">
         <defs>@@ROUTEDEFS@@</defs>
         @@ROUTES@@
+        @@PENS@@
         @@SPOTS@@
       </svg>
       <div class="tip" id="tip" aria-hidden="true"><img class="ph" alt=""><b></b><small></small></div>
@@ -259,6 +270,7 @@ footer a{color:var(--olive);font-weight:700}
       </aside>
     </div>
     <div class="chips" id="chips">@@CHIPS@@</div>
+    <p class="legend"><i><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#paw"/></svg></i>{{Țarcuri pentru câini ale primăriei: aici câinele aleargă liber, fără lesă. Le includ în plimbare, la cerere.||City dog pens: fenced areas where your dog runs off the leash. I add one to the walk on request.}}</p>
   </div>
 </section>
 
@@ -329,7 +341,7 @@ footer a{color:var(--olive);font-weight:700}
 </section>
 
 <section class="wrap prices" id="preturi">
-  <div class="sec-head"><h2>{{Prețuri||Prices}}</h2><p>{{Plimbările includ preluarea și aducerea acasă, oriunde în Cluj-Napoca.||Walks include pickup from home and drop-off, anywhere in Cluj-Napoca.}}</p></div>
+  <div class="sec-head"><h2>{{Prețuri||Prices}}</h2><p>{{Plimbările includ preluarea și aducerea acasă. Deplasarea în Cluj-Napoca și Florești e inclusă. În afara lor (de exemplu Apahida sau Luna), +30 lei la fiecare 10 km.||Walks include pickup from home and drop-off. Travel within Cluj-Napoca and Florești is included. Outside them (for example Apahida or Luna), +30 lei for every 10 km.}}</p></div>
   <h3 class="sub">{{Plimbări câini||Dog walks}}</h3>
   <div class="cards">
     <div class="card"><h3>{{Prima plimbare||Trial walk}}</h3><div class="amt">30 <small>lei</small></div><p>{{30 min, ca să ne cunoaștem||30 min, so we get to know each other}}</p></div>
@@ -361,9 +373,14 @@ footer a{color:var(--olive);font-weight:700}
 <script>
 (() => {
 const SPOTS = @@SPOTSJSON@@;
+const PENS = @@PENSJSON@@;
 const lang = document.documentElement.lang;
 const L = {ro: {photo: "foto", hi: (n, d) => `Bună! Aș vrea o plimbare în ${n} (${d}).`},
            en: {photo: "photo", hi: (n, d) => `Hi! I'd like a walk in ${n} (${d}).`}}[lang];
+const PL = {ro: {t: n => `Țarc câini · ${n}`, tags: ["țarc împrejmuit", "fără lesă"], desc: "Spațiu împrejmuit al primăriei, unde câinele aleargă liber. Îl includ în plimbare, la cerere.",
+                 hi: n => `Bună! Aș vrea o plimbare cu alergare în țarcul de câini (${n}).`},
+            en: {t: n => `Dog pen · ${n}`, tags: ["fenced", "off-leash"], desc: "A fenced city area where your dog runs free. I add it to a walk on request.",
+                 hi: n => `Hi! I'd like a walk with off-leash time in the dog pen (${n}).`}}[lang];
 const $ = id => document.getElementById(id);
 const top = $("top"), box = $("mapbox"), tip = $("tip"), panel = $("panel");
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -384,7 +401,7 @@ function openSpot(k) {
   current = k;
   const s = SPOTS[k], t = s[lang];
   tip.classList.remove("show");
-  document.querySelectorAll(".spot,.chips button").forEach(g => g.classList.toggle("on", g.dataset.k === k));
+  document.querySelectorAll(".spot,.chips button,.pen").forEach(g => g.classList.toggle("on", g.dataset.k === k));
   $("p-name").textContent = s.name;
   $("p-tags").innerHTML = t.tags.map(x => `<span>${x}</span>`).join("");
   $("p-desc").textContent = t.desc;
@@ -392,11 +409,27 @@ function openSpot(k) {
   $("p-dur").textContent = "/ " + t.dur;
   panel.querySelectorAll(".ph").forEach((p, i) => { p.src = img(k, i + 1); p.alt = `${s.name}, ${L.photo} ${i + 1}`; });
   $("p-wa").href = "https://wa.me/40746048445?text=" + encodeURIComponent(L.hi(s.name, t.dur));
+  panel.classList.remove("pen-mode");
   panel.classList.add("open");
 }
+function openPen(k) {
+  current = k;
+  const p = PENS[k];
+  tip.classList.remove("show");
+  document.querySelectorAll(".spot,.chips button,.pen").forEach(g => g.classList.toggle("on", g.dataset.p === k));
+  $("p-name").textContent = PL.t(p.name);
+  $("p-tags").innerHTML = [p.area, ...PL.tags].map(x => `<span>${x}</span>`).join("");
+  $("p-desc").textContent = PL.desc;
+  $("p-wa").href = "https://wa.me/40746048445?text=" + encodeURIComponent(PL.hi(p.name));
+  panel.classList.add("pen-mode", "open");
+}
+document.querySelectorAll(".pen").forEach(g => {
+  g.addEventListener("click", () => openPen(g.dataset.p));
+  g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openPen(g.dataset.p); } });
+});
 function closePanel() {
   panel.classList.remove("open"); tip.classList.remove("show"); current = null;
-  document.querySelectorAll(".spot,.chips button").forEach(g => g.classList.remove("on"));
+  document.querySelectorAll(".spot,.chips button,.pen").forEach(g => g.classList.remove("on"));
 }
 document.querySelectorAll(".spot").forEach(g => {
   const s = SPOTS[g.dataset.k];

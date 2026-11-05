@@ -6,7 +6,7 @@ Inputs: src/page.html (one template for both languages), src/spots.json (map par
 tools/map/map.json (map shapes from tools/map/gen.py), src/static/ (icons, robots, CNAME…).
 Text in the template is written {{Romanian||English}}; @@NAME@@ marks values filled in here.
 """
-import datetime, html, json, os, re, shutil, sys, urllib.parse
+import math, datetime, html, json, os, re, shutil, sys, urllib.parse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, '_site')
@@ -65,6 +65,32 @@ LABEL = {  # where a spot's name sits; set "label" in src/spots.json when the de
 }
 
 
+LON0, LON1, LAT0, LAT1 = 23.505, 23.665, 46.700, 46.800  # same map area as tools/map/gen.py
+
+
+def project(lat, lon, m):
+    return (lon - LON0) / (LON1 - LON0) * m['w'], (LAT1 - lat) / (LAT1 - LAT0) * m['h']
+
+
+def pen_marks(m, pens, lang):
+    """Dog pens (OSM leisure=dog_park): small lime paws under the park dots, nudged off a park dot they would cover."""
+    dots = [r['c'] for r in m['routes'].values()]
+    out = []
+    for k, p in pens.items():
+        x, y = project(p['lat'], p['lon'], m)
+        x, y = x + p.get('dx', 0), y + p.get('dy', 0)  # set dx/dy in src/pens.json when a park name covers the paw
+        for cx, cy in dots:
+            d = math.hypot(x - cx, y - cy)
+            if d < 32:
+                ux, uy = ((x - cx) / d, (y - cy) / d) if d > 1 else (-.6, .8)
+                x, y = cx + ux * 32, cy + uy * 32
+        name = html.escape(p['name'])
+        out.append(f'<g class="pen" data-p="{k}" tabindex="0" role="button" aria-label="{"Țarc câini" if lang == "ro" else "Dog pen"}: {name}" '
+                   f'transform="translate({x:.1f} {y:.1f})"><circle class="hit" r="22"/><circle class="pring" r="11"/>'
+                   f'<use href="#paw" x="-7" y="-7" width="14" height="14"/></g>')
+    return '\n'.join(out)
+
+
 def map_parts(m, spots):
     defs, routes, marks, chips = [], [], [], []
     for i, (k, r) in enumerate(m['routes'].items()):
@@ -90,7 +116,7 @@ def jsonld(lang, url):
         'name': 'Four Paws Cluj', 'url': url, 'image': SITE + '/og-image.png',
         'telephone': '+' + PHONE, 'priceRange': '20–350 RON',
         'description': 'Plimbări pentru câini și vizite la domiciliu pentru animale în Cluj-Napoca.' if lang == 'ro' else 'Dog walking and pet home visits in Cluj-Napoca.',
-        'areaServed': {'@type': 'City', 'name': 'Cluj-Napoca'},
+        'areaServed': [{'@type': 'City', 'name': 'Cluj-Napoca'}, {'@type': 'City', 'name': 'Florești'}],
         'sameAs': [u for _, u in SOCIAL],
         'makesOffer': [{'@type': 'Offer', 'name': ro if lang == 'ro' else en, 'price': lei, 'priceCurrency': 'RON'}
                        for ro, en, lei, _ in PRICES],
@@ -100,6 +126,7 @@ def jsonld(lang, url):
 def build():
     m = json.loads(read('tools', 'map', 'map.json'))
     spots = json.loads(read('src', 'spots.json'))
+    pens = json.loads(read('src', 'pens.json'))
     if set(spots) != set(m['routes']):
         sys.exit(f'spots.json {sorted(spots)} and map.json routes {sorted(m["routes"])} differ')
     defs, routes, marks, chips = map_parts(m, spots)
@@ -115,7 +142,7 @@ def build():
             'WAVISIT': html.escape(wa('Bună! Aș vrea o vizită la domiciliu pentru animalul meu.' if lang == 'ro'
                                       else "Hi! I'd like a home visit for my pet.")),
             'VIEWBOX': ' '.join(map(str, VIEWBOX)), 'ROUTEDEFS': defs, 'ROUTES': routes,
-            'SPOTS': marks, 'CHIPS': chips, 'PAW': PAW, 'SOCIALLINKS': social_links(),
+            'SPOTS': marks, 'PENS': pen_marks(m, pens, lang), 'PENSJSON': json.dumps(pens, ensure_ascii=False), 'CHIPS': chips, 'PAW': PAW, 'SOCIALLINKS': social_links(),
             'SPOTSJSON': json.dumps(spots, ensure_ascii=False), 'JSONLD': jsonld(lang, url),
             'YEAR': str(datetime.date.today().year),
             **{'L_' + k: v for k, v in m['layers'].items()},

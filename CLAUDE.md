@@ -14,6 +14,7 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory _site   # preview at ht
 ```
 
 - `src/page.html`: the one template for both languages. Text is written `{{Romanian||English}}` (works in text and attributes); `@@NAME@@` marks values `tools/build.py` fills in (map shapes, routes, links, JSON-LD).
+- `src/pens.json`: the 13 city dog pens shown as small paws on the map (lat/lon from OSM `leisure=dog_park`).
 - `src/spots.json`: the map parks (name, price, RO/EN length, tags, description). Its keys must match the routes in `tools/map/map.json`; the build stops if they differ.
 - `src/static/`: copied as is: icons, `og-image.png` (share preview), `site.webmanifest`, `robots.txt`, `404.html`, `CNAME`, `.nojekyll`.
 - Prices are in two places that must agree: the price cards in `src/page.html` and `PRICES` in `tools/build.py` (structured data for Google).
@@ -25,7 +26,7 @@ Push to `main` → `.github/workflows/pages.yml` runs the build and publishes `_
 
 ## Rules the site must keep
 
-- **Location**: write only "Cluj-Napoca". No street, address or home location anywhere: text, map, structured data or photo metadata (strip EXIF GPS from photos).
+- **Location**: write only "Cluj-Napoca" (and "Florești" as a place where travel is free). No street, address or home location anywhere: text, map, structured data or photo metadata (strip EXIF GPS from photos).
 - **Contact**: phone and WhatsApp `0746 048 445`; links `https://wa.me/40746048445?text=<url-encoded message>` and `tel:+40746048445`. Every booking button opens WhatsApp with a message already filled in.
 - **Map credit**: the footer keeps the © OpenStreetMap contributors link; the map data license requires it.
 - **Motion lives on the map only** (routes drawing, walking paw, dot pulse) plus the paw trail color change. Every animation has a `prefers-reduced-motion` fallback.
