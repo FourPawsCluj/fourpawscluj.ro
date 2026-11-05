@@ -14,7 +14,7 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory _site   # preview at ht
 ```
 
 - `src/page.html`: the one template for both languages. Text is written `{{Romanian||English}}` (works in text and attributes); `@@NAME@@` marks values `tools/build.py` fills in (map shapes, routes, links, JSON-LD).
-- `src/pens.json`: the 13 city dog pens shown as small paws on the map (lat/lon from OSM `leisure=dog_park`).
+- `src/pens.json`: the 16 city dog pens shown as small paws on the map (OSM `leisure=dog_park` + the Primăria list).
 - `src/spots.json`: the map parks (name, price, RO/EN length, tags, description). Its keys must match the routes in `tools/map/map.json`; the build stops if they differ.
 - `src/static/`: copied as is: icons, `og-image.png` (share preview), `site.webmanifest`, `robots.txt`, `404.html`, `CNAME`, `.nojekyll`.
 - Prices are in two places that must agree: the price cards in `src/page.html` and `PRICES` in `tools/build.py` (structured data for Google).

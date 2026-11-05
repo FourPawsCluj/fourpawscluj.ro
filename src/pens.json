@@ -21,21 +21,21 @@
   "lon": 23.58864
  },
  "pen-276584007": {
-  "name": "Str. Alexandru Vaida Voevod",
+  "name": "Baza Sportivă Gheorgheni",
   "area": "Gheorgheni",
   "osm": "way/276584007",
   "lat": 46.76852,
   "lon": 23.63132
  },
  "pen-288194375": {
-  "name": "Aleea Slănic",
+  "name": "Zona verde str. Slănic",
   "area": "Gheorgheni",
   "osm": "way/288194375",
   "lat": 46.77155,
   "lon": 23.62267
  },
  "pen-436358424": {
-  "name": "Parcul Detunata",
+  "name": "Parcul Detunata (2 țarcuri)",
   "area": "Gheorgheni",
   "osm": "way/436358424",
   "lat": 46.76457,
@@ -64,21 +64,21 @@
   "lon": 23.60452
  },
  "pen-942818039": {
-  "name": "Aleea Castanilor",
+  "name": "Str. Gheorghe Dima 31-33",
   "area": "Zorilor",
   "osm": "way/942818039",
   "lat": 46.7567,
   "lon": 23.57338
  },
  "pen-1180201397": {
-  "name": "Str. Decebal",
+  "name": "Str. Căii Ferate",
   "area": "Centru",
   "osm": "way/1180201397",
   "lat": 46.78565,
   "lon": 23.59525
  },
  "pen-1232875238": {
-  "name": "Str. Galați",
+  "name": "Str. Tulcea",
   "area": "Între Lacuri",
   "osm": "way/1232875238",
   "lat": 46.77478,
@@ -91,6 +91,28 @@
   "area": "Mărăști",
   "osm": "way/1554764351",
   "lat": 46.78482,
-  "lon": 23.61547
+  "lon": 23.61547,
+  "dy": -22
+ },
+ "pen-cetatuia": {
+  "name": "Dealul Cetățuia",
+  "area": "Cetățuia",
+  "src": "primărie, poziție aproximativă",
+  "lat": 46.77516,
+  "lon": 23.57928
+ },
+ "pen-kovari": {
+  "name": "Str. Kovari Laszlo",
+  "area": "Gruia",
+  "src": "primărie, poziție aproximativă",
+  "lat": 46.78221,
+  "lon": 23.57826
+ },
+ "pen-rozelor": {
+  "name": "Parcul Rozelor",
+  "area": "Plopilor",
+  "src": "primărie, poziție aproximativă",
+  "lat": 46.7646,
+  "lon": 23.55361
  }
 }
