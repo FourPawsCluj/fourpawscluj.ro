@@ -103,7 +103,7 @@ Light theme only.
 | Tura mare | Big walk | 80 lei | 90 min prin parcuri, pentru câinii energici |
 | Pachet 10 plimbări | 10-walk pack | 350 lei | 10 × 30 min, economisești 50 lei |
 
-  Home visits (any pet; set by Emilia on 2026-11-05):
+  Home visits (any pet; set by Emilia on 2026-11-05). Brushing and cutting out matted fur for cats and dogs are included in every visit price:
 
 | RO | EN | Price | Note |
 |---|---|---|---|
