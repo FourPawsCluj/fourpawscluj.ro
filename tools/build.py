@@ -88,7 +88,9 @@ def pen_marks(m, pens, lang):
         out.append(f'<g class="pen" data-p="{k}" tabindex="0" role="button" aria-label="{"Țarc câini" if lang == "ro" else "Dog pen"}: {name}" '
                    f'transform="translate({x:.1f} {y:.1f})"><circle class="hit" r="22"/><circle class="pring" r="11"/>'
                    f'<use href="#paw" x="-7" y="-7" width="14" height="14"/></g>')
-    return '\n'.join(out)
+    chips = ''.join(f'<button type="button" data-p="{k}"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#paw"/></svg>'
+                    f'{html.escape(p["name"])}</button>' for k, p in sorted(pens.items(), key=lambda kv: kv[1]['name']))
+    return '\n'.join(out), chips
 
 
 def map_parts(m, spots):
@@ -136,13 +138,14 @@ def build():
     for lang, path in (('ro', ''), ('en', 'en/')):
         url = f'{SITE}/{path}'
         hello = 'Bună! Aș vrea o plimbare pentru câinele meu.' if lang == 'ro' else "Hi! I'd like a walk for my dog."
+        pens_svg, pen_chips = pen_marks(m, pens, lang)
         vals = {
             'URL': url, 'SITE': SITE, 'ROOT': '/', 'HOME': '/' + path,
             'OTHER': '/en/' if lang == 'ro' else '/', 'WA': html.escape(wa(hello)),
             'WAVISIT': html.escape(wa('Bună! Aș vrea o vizită la domiciliu pentru animalul meu.' if lang == 'ro'
                                       else "Hi! I'd like a home visit for my pet.")),
             'VIEWBOX': ' '.join(map(str, VIEWBOX)), 'ROUTEDEFS': defs, 'ROUTES': routes,
-            'SPOTS': marks, 'PENS': pen_marks(m, pens, lang), 'PENSJSON': json.dumps(pens, ensure_ascii=False), 'CHIPS': chips, 'PAW': PAW, 'SOCIALLINKS': social_links(),
+            'SPOTS': marks, 'PENS': pens_svg, 'PENCHIPS': pen_chips, 'PENSJSON': json.dumps(pens, ensure_ascii=False), 'CHIPS': chips, 'PAW': PAW, 'SOCIALLINKS': social_links(),
             'SPOTSJSON': json.dumps(spots, ensure_ascii=False), 'JSONLD': jsonld(lang, url),
             'YEAR': str(datetime.date.today().year),
             **{'L_' + k: v for k, v in m['layers'].items()},

@@ -92,6 +92,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding-block:
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .chips button{border:1.5px solid var(--olive);background:#fff;color:var(--olive);border-radius:999px;padding:9px 14px;font:700 14px "DM Sans",sans-serif;cursor:pointer}
 .chips button.on{background:var(--olive);color:var(--lime)}
+.pen-chips{margin-top:10px}
+.pen-chips button{background:var(--lime);border-color:var(--olive);display:inline-flex;align-items:center;gap:6px}
+.pen-chips svg{width:14px;height:14px;color:var(--olive)}
+.pen-chips button.on svg{color:var(--lime)}
 .tip{position:absolute;pointer-events:none;width:210px;background:#fff;border-radius:16px;padding:8px;box-shadow:0 12px 30px rgba(27,47,4,.18);left:0;top:0;opacity:0;z-index:5;transition:opacity .15s}
 .tip.show{opacity:1}
 .tip .ph{height:130px}
@@ -271,6 +275,7 @@ footer a{color:var(--olive);font-weight:700}
     </div>
     <div class="chips" id="chips">@@CHIPS@@</div>
     <p class="legend"><i><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#paw"/></svg></i>{{Țarcuri pentru câini ale primăriei: aici câinele aleargă liber, fără lesă. Le includ în plimbare, la cerere.||City dog pens: fenced areas where your dog runs off the leash. I add one to the walk on request.}}</p>
+    <div class="chips pen-chips">@@PENCHIPS@@</div>
   </div>
 </section>
 
@@ -453,7 +458,8 @@ document.querySelectorAll(".spot").forEach(g => {
   g.addEventListener("click", () => openSpot(g.dataset.k));
   g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openSpot(g.dataset.k); } });
 });
-document.querySelectorAll(".chips button").forEach(b => b.onclick = () => openSpot(b.dataset.k));
+document.querySelectorAll(".chips button[data-k]").forEach(b => b.onclick = () => openSpot(b.dataset.k));
+document.querySelectorAll(".chips button[data-p]").forEach(b => b.onclick = () => openPen(b.dataset.p));
 $("px").onclick = closePanel;
 addEventListener("keydown", e => { if (e.key === "Escape" && current) closePanel(); });
 
