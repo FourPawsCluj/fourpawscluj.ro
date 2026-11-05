@@ -135,8 +135,12 @@ nav{display:flex;align-items:center;justify-content:space-between;padding-block:
 .card .amt small{font-size:18px}
 .card p{margin:0;font-size:15px;opacity:.85}
 .prices .sub{font-size:26px;font-weight:600;margin:28px 0 14px}
-.pets{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
-.pets span{background:var(--lime);color:var(--olive);border-radius:999px;padding:6px 14px;font-weight:700;font-size:15px}
+.visits .btn{margin-top:6px}
+.pets{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.pets figure{margin:0}
+.pets img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;display:block;border-radius:18px;background:#eadfce}
+.pets figcaption{font-weight:700;color:var(--olive);padding:8px 4px 0}
+@media (max-width:820px){.pets{grid-template-columns:repeat(3,1fr);gap:10px}}
 .checks{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:10px}
 .checks li{padding-left:28px;position:relative}
 .checks li::before{content:"✓";position:absolute;left:0;top:-1px;width:20px;height:20px;border-radius:50%;background:var(--lime);color:var(--olive);font-weight:800;font-size:13px;display:grid;place-items:center}
@@ -272,7 +276,6 @@ footer a{color:var(--olive);font-weight:700}
   <div>
     <h2>{{Vizite la domiciliu||Home visits}}</h2>
     <p>{{Pleci în vacanță sau stai mult la birou? Vin la tine acasă și am grijă de animalul tău cât ești plecat. După fiecare vizită primești poze pe WhatsApp.||Going on holiday or stuck at work? I come to your home and look after your pet while you're away. After every visit you get photos on WhatsApp.}}</p>
-    <div class="pets"><span>{{Pisici||Cats}}</span><span>{{Păsări||Birds}}</span><span>{{Iepuri||Rabbits}}</span><span>{{Hamsteri||Hamsters}}</span><span>{{Reptile||Reptiles}}</span></div>
     <a class="btn orange" href="@@WAVISIT@@" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#wa"/></svg>{{Vreau o vizită||Book a visit}}</a>
   </div>
   <div class="card">
@@ -283,6 +286,13 @@ footer a{color:var(--olive);font-weight:700}
       <li>{{Medicamente, la ora stabilită||Medication, on schedule}}</li>
       <li>{{Joacă și companie||Play and company}}</li>
     </ul>
+  </div>
+  <div class="pets">
+    <figure><img src="/img/pet-cat.webp" width="480" height="480" loading="lazy" alt="{{Pisică tărcată care așteaptă mâncarea||Tabby cat waiting for its food}}"><figcaption>{{Pisici||Cats}}</figcaption></figure>
+    <figure><img src="/img/pet-bird.webp" width="480" height="480" loading="lazy" alt="{{Nimfă pe un deget, lângă colivie||Cockatiel on a finger by its cage}}"><figcaption>{{Păsări||Birds}}</figcaption></figure>
+    <figure><img src="/img/pet-rabbit.webp" width="480" height="480" loading="lazy" alt="{{Iepure cu urechi lăsate care mănâncă verdețuri din mână||Lop-eared rabbit eating greens from a hand}}"><figcaption>{{Iepuri||Rabbits}}</figcaption></figure>
+    <figure><img src="/img/pet-hamster.webp" width="480" height="480" loading="lazy" alt="{{Hamster ținut în palme||Hamster held in cupped hands}}"><figcaption>{{Hamsteri||Hamsters}}</figcaption></figure>
+    <figure><img src="/img/pet-reptile.webp" width="480" height="480" loading="lazy" alt="{{Dragon bărbos în terariu||Bearded dragon in its terrarium}}"><figcaption>{{Reptile||Reptiles}}</figcaption></figure>
   </div>
 </section>
 

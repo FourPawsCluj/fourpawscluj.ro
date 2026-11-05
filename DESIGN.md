@@ -52,7 +52,7 @@ Light theme only.
 2. **Hero, dog's-eye view**: headline "Cluj, văzut de la *30 cm.*" with "30 cm." on a lime highlight. One line under it, then the orange WhatsApp button showing the number. Right side: a photo taken at dog height (30 cm off the ground).
 3. **Map, "Traseele noastre"**: see the Map section below.
 4. **Walk report, "Raport după fiecare plimbare"** (no route map or distance: Dan has no GPS tracking): text on the left; on the right, a phone frame showing a sample WhatsApp message with a photo from the walk, dog name, park, time, pills "Pipi ✓ Caca ✓ Apă ✓", a short note, and blue ticks.
-5. **Home visits, "Vizite la domiciliu"** (`#vizite`, added 2026-11-05 at Emilia's request): text on the left, lime pills for the animals (pisici, păsări, iepuri, hamsteri, reptile), orange "Vreau o vizită" button (WhatsApp: "Bună! Aș vrea o vizită la domiciliu pentru animalul meu."); on the right a white card "Ce fac la o vizită" with a checklist. The hero line links to it.
+5. **Home visits, "Vizite la domiciliu"** (`#vizite`, added 2026-11-05 at Emilia's request): text on the left, orange "Vreau o vizită" button (WhatsApp: "Bună! Aș vrea o vizită la domiciliu pentru animalul meu."); on the right a white card "Ce fac la o vizită" with a checklist; below both, a row of 5 photos with captions (pisici, păsări, iepuri, hamsteri, reptile; 3 per row on phones). The hero line links to it.
 6. **About, "Despre mine"** (`#despre`): Emilia's short bio (2 paragraphs, from her own text) + 4 experience cards (câini și pisici, păsări 16 ani, iepuri, reptile). No photo until she sends a real one; never an AI photo of her.
 7. **Prices**: two rows of cards, "Plimbări câini" and "Vizite la domiciliu", see Content. The "Plimbare lungă" card is olive with lime text (the one to look at first).
 8. **Footer**: © year, name, "Cluj-Napoca", phone, "Date hartă © contribuitorii OpenStreetMap" (required by the map data license).
@@ -118,7 +118,8 @@ Light theme only.
 ## Photos
 
 - Now: 16 AI photos (OpenAI gpt-image-2, Dan's call on 2026-11-04) of one golden-red English Cocker Spaniel with an olive-green harness and leash: `hero` (dog's-eye view) and `{park}-1…3` for each map spot. Files: `src/static/img/*.webp`; prompts and the generator: `tools/images/generate.py`.
-- Same dog, same harness in every photo; people only as hands or legs, never faces; late spring, natural light.
+- Home-visit photos `pet-{cat,bird,rabbit,hamster,reptile}.webp` (480 px, AI, 2026-11-05): indoors, hands only, no street view through windows. Replace with Emilia's real photos of her own animals under the same names.
+- Same dog, same harness in every dog photo; people only as hands or legs, never faces; late spring, natural light.
 - Replace them with real photos from Dan's walks as they come in, same file names: an AI photo read as a real client costs visitor trust if found out.
 - Size: square, WebP, hero 900 px, park photos 720 px, each under 120 KB. Park photos load only when a park card or hover card opens.
 

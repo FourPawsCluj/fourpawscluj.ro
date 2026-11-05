@@ -49,11 +49,22 @@ IMAGES = {
     'somes-2': 'The cocker spaniel standing on the grassy river bank looking at the flowing Someș river.',
     'somes-3': 'The cocker spaniel walking on a riverside path at sunset, river reflecting warm light.',
 }
-WIDTH = {'hero': 900}  # px of the WebP; others 720 (park card) — small cards reuse the same file
+PET_STYLE = ('Photorealistic candid photo inside a cozy, bright apartment, soft natural window light, warm natural colors, '
+             'shallow depth of field, real-life feel, not staged. No window view of the street, no house numbers. '
+             'No text, no logos, no watermark. If a person appears, show only hands, never a face.')
+PETS = {  # home-visit section; no cocker spaniel in these
+    'pet-cat': 'A pet sitter\'s hand filling a ceramic bowl with cat food while a fluffy tabby cat waits beside it on a kitchen floor.',
+    'pet-bird': 'A cockatiel with a yellow crest perched on a pet sitter\'s finger next to its open cage, looking at the camera.',
+    'pet-rabbit': 'A small brown lop-eared rabbit eating fresh greens from a hand on a soft rug in a living room.',
+    'pet-hamster': 'A golden Syrian hamster sitting in cupped hands, cheeks full, a clean hamster cage softly blurred behind.',
+    'pet-reptile': 'A bearded dragon resting on a warm rock in a clean, well-lit glass terrarium, a hand placing a leaf of greens nearby.',
+}
+IMAGES.update(PETS)
+WIDTH = {'hero': 900, **{k: 480 for k in PETS}}  # px of the WebP; others 720 (park card) — small cards reuse the same file
 
 
 def generate(name, key):
-    body = json.dumps({'model': 'gpt-image-2', 'prompt': f'{IMAGES[name]} {DOG} {STYLE}',
+    body = json.dumps({'model': 'gpt-image-2', 'prompt': f'{IMAGES[name]} {PET_STYLE}' if name in PETS else f'{IMAGES[name]} {DOG} {STYLE}',
                        'size': '1024x1024', 'quality': 'high', 'n': 1}).encode()
     req = urllib.request.Request('https://api.openai.com/v1/images/generations', data=body,
                                  headers={'Authorization': f'Bearer {key}', 'Content-Type': 'application/json'})
