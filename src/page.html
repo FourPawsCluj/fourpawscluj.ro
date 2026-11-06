@@ -151,6 +151,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding-block:
 .prices .sub{font-size:26px;font-weight:600;margin:28px 0 14px}
 .prices .sub-note{color:var(--muted);margin:-8px 0 14px}
 .visits .btn{margin-top:6px}
+.rules{padding-block:0 70px}
 .pets{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
 .pets figure{margin:0}
 .pets img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;display:block;border-radius:18px;background:#eadfce}
@@ -362,6 +363,15 @@ footer a{color:var(--olive);font-weight:700}
     <div class="card"><h3>{{Vizită de o oră||One-hour visit}}</h3><div class="amt">60 <small>lei</small></div><p>{{o vizită pe zi, 60 min||one visit a day, 60 min}}</p></div>
     <div class="card"><h3>{{2 vizite pe zi||2 visits a day}}</h3><div class="amt">100 <small>lei</small></div><p>{{câte o oră, dimineața și seara||one hour each, morning and evening}}</p></div>
     <div class="card"><h3>{{Oră în plus||Extra hour}}</h3><div class="amt">20 <small>lei</small></div><p>{{pentru o vizită mai lungă de o oră||for a visit longer than one hour}}</p></div>
+  </div>
+</section>
+
+<section class="wrap rules" id="rezervare">
+  <div class="sec-head"><h2>{{Înainte să rezervi||Before you book}}</h2></div>
+  <div class="cards">
+    <div class="card"><h3>{{Confirm după disponibilitate||Confirmed when I'm free}}</h3><p>{{Îmi scrii pe WhatsApp ziua sau perioada și îți spun dacă am loc. Rezervarea e sigură după ce o confirm.||Message me on WhatsApp with the day or the dates and I'll tell you if I'm free. Your booking is set once I confirm it.}}</p></div>
+    <div class="card"><h3>{{Vizită de cunoaștere gratuită||Free meet-and-greet}}</h3><p>{{Înainte de vizitele la domiciliu vin o dată la tine, gratuit: îmi arăți rutina animalului, temperamentul și nevoile lui speciale, și îmi lași cheile.||Before home visits start, I come over once, free: you show me your pet's routine, temperament and any special needs, and give me the keys.}}</p></div>
+    <div class="card"><h3>{{Plata la cunoaștere||Payment at the meet-and-greet}}</h3><p>{{Pentru vizitele la domiciliu plătești toată perioada la vizita de cunoaștere. Dacă te întorci mai devreme, banii nu se restituie: zilele acelea le-am ținut libere pentru tine.||For home visits you pay for the whole period at the meet-and-greet. If you come back early, the money is not refunded: I kept those days free for you.}}</p></div>
   </div>
 </section>
 </main>
