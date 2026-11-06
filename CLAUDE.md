@@ -30,8 +30,8 @@ Push to `main` → `.github/workflows/pages.yml` runs the build and publishes `_
 - **Contact**: phone and WhatsApp `0746 048 445`; links `https://wa.me/40746048445?text=<url-encoded message>` and `tel:+40746048445`. Every booking button opens WhatsApp with a message already filled in.
 - **Map credit**: the footer keeps the © OpenStreetMap contributors link; the map data license requires it.
 - **Motion lives on the map only** (routes drawing, walking paw, dot pulse) plus the paw trail color change. Every animation has a `prefers-reduced-motion` fallback.
-- **Map layers**: the watercolor map is one still SVG; routes and dots are a second SVG on top, so animation never re-renders the watercolor filter. Keep anything that moves in the top SVG.
-- **Speed**: each page under 300 KB before photos (now ~168 KB); photos WebP/AVIF under 120 KB, lazy below the hero.
+- **Map layers**: the watercolor map is a still image (`src/static/img/map-{800,1400,2280}.webp` + the repeating paper grain `map-grain.webp`), drawn once from `src/map-base.svg` by `node tools/map/bake.mjs` (needs Chrome, Playwright, cwebp); its SVG filters took 270 ms to repaint in Safari each time the map came back on screen, the image takes 25 ms. Routes and dots are an SVG on top. Keep anything that moves in the top SVG. After changing `src/map-base.svg` or `tools/map/map.json`, run `bake.mjs` then `tools/images/previews.py`; the build stops if the images are out of date.
+- **Speed**: each page under 300 KB before photos (now ~75 KB); photos WebP/AVIF under 120 KB, lazy below the hero.
 - Photos: `src/static/img/{hero,<park>-1..3}.webp`, made by `tools/images/generate.py` (gpt-image-2; key `OPENAI_API_KEY`, Dan uses the one in `~/Documents/dev/products/resortbuggy/.env`). Real photos replace them under the same names.
 - Every photo has a tiny blurred preview in `src/previews.json` (made by `python3 -I tools/images/previews.py`, needs `cwebp`); the build puts it behind each `<img src="/img/…">` and the park card sets it in JS, so a photo still loading shows its preview, not an empty box. Rerun the script after adding or replacing a photo; the build stops if a preview is missing.
 
@@ -42,6 +42,7 @@ Push to `main` → `.github/workflows/pages.yml` runs the build and publishes `_
 ```bash
 tools/map/fetch.sh                                            # OpenStreetMap layers → tools/map/osm/ (gitignored)
 python3 -I tools/map/gen.py tools/map/osm tools/map/map.json      # simplify into SVG paths + walk routes
+node tools/map/bake.mjs && python3 -I tools/images/previews.py     # draw the map images again
 ```
 
 - `fetch.sh`: the Overpass server often answers "at capacity"; the script retries small queries, so give it a few minutes.

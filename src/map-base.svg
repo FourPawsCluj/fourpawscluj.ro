@@ -1,0 +1,32 @@
+<!-- The watercolor map under the routes. tools/map/bake.mjs draws it once into src/static/img/map-*.webp;
+     the paper grain is a separate tile (map-grain.webp) laid over it. The page shows those images, never this SVG (its filters are slow to repaint on phones). -->
+<svg class="map" viewBox="@@VIEWBOX@@" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <style>
+.land{fill:#FBF3E6}
+.woods{fill:#8CCB6A} .parks{fill:#B9E58C} .water{fill:#8FCBE6}
+.river{fill:none;stroke:#8FCBE6;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.roads1,.roads2,.roads3{fill:none;stroke:#FFFAF2;stroke-linecap:round;stroke-linejoin:round;opacity:.55}
+.roads1{stroke-width:4} .roads2{stroke-width:2.4} .roads3{stroke-width:1.3}
+.wc{filter:url(#wc)}
+.city-lbl{font:800 15px "DM Sans",sans-serif;letter-spacing:.35em;fill:#1B2F04;opacity:.35}
+</style>
+<defs>
+    <filter id="wc" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="9" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="1.1" result="b"/>
+      <feComposite in="b" in2="d" operator="arithmetic" k2=".55" k3=".55"/>
+    </filter>
+  </defs>
+  <rect class="land" x="-200" y="-200" width="1400" height="1400"/>
+  <g class="wc">
+    <path class="woods" id="L-woods" d="@@L_woods@@"/>
+    <path class="parks" id="L-parks" d="@@L_parks@@"/>
+    <path class="water" id="L-water" d="@@L_water@@"/>
+    <path class="river" id="L-river" d="@@L_river@@"/>
+  </g>
+  <path class="roads3" d="@@L_roads3@@"/>
+  <path class="roads2" id="L-roads2" d="@@L_roads2@@"/>
+  <path class="roads1" id="L-roads1" d="@@L_roads1@@"/>
+  <text class="city-lbl" x="560" y="330">CLUJ-NAPOCA</text>
+</svg>

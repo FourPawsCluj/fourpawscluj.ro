@@ -6,7 +6,7 @@ Inputs: src/page.html (one template for both languages), src/spots.json (map par
 tools/map/map.json (map shapes from tools/map/gen.py), src/static/ (icons, robots, CNAME…).
 Text in the template is written {{Romanian||English}}; @@NAME@@ marks values filled in here.
 """
-import math, datetime, html, json, os, re, shutil, sys, urllib.parse
+import math, datetime, hashlib, html, json, os, re, shutil, sys, urllib.parse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, '_site')
@@ -135,6 +135,24 @@ def add_previews(page, previews):
     return re.sub(r'<img\b[^>]*?\ssrc="/img/([\w-]+)\.webp"', one, page)
 
 
+MAP_WIDTHS = (800, 1400, 2280)  # widths of src/static/img/map-<w>.webp, drawn by tools/map/bake.mjs
+
+
+def map_base(m):
+    """The watercolor map as one standalone SVG (src/map-base.svg filled in); bake.mjs turns it into images."""
+    vals = {'VIEWBOX': ' '.join(map(str, VIEWBOX)), **{'L_' + k: v for k, v in m['layers'].items()}}
+    return re.sub(r'@@(\w+)@@', lambda x: vals[x.group(1)], read('src', 'map-base.svg'))
+
+
+def check_map_images(m):
+    want = hashlib.sha256(map_base(m).encode()).hexdigest()
+    have = read('src', 'map-base.sha256').strip() if os.path.exists(os.path.join(ROOT, 'src', 'map-base.sha256')) else ''
+    imgs = all(os.path.exists(os.path.join(ROOT, 'src', 'static', 'img', f'map-{w}.webp')) for w in MAP_WIDTHS)
+    imgs = imgs and os.path.exists(os.path.join(ROOT, 'src', 'static', 'img', 'map-grain.webp'))
+    if want != have or not imgs:
+        sys.exit('the map images are older than src/map-base.svg or tools/map/map.json: run node tools/map/bake.mjs')
+
+
 def build():
     m = json.loads(read('tools', 'map', 'map.json'))
     spots = json.loads(read('src', 'spots.json'))
@@ -145,6 +163,7 @@ def build():
         sys.exit(f'no preview for {missing}: run python3 -I tools/images/previews.py')
     if set(spots) != set(m['routes']):
         sys.exit(f'spots.json {sorted(spots)} and map.json routes {sorted(m["routes"])} differ')
+    check_map_images(m)
     defs, routes, marks, chips = map_parts(m, spots)
     tpl = read('src', 'page.html')
     shutil.rmtree(OUT, ignore_errors=True)
@@ -162,8 +181,8 @@ def build():
             'SPOTS': marks, 'PENS': pens_svg, 'PENCHIPS': pen_chips, 'PENSJSON': json.dumps(pens, ensure_ascii=False), 'CHIPS': chips, 'PAW': PAW, 'SOCIALLINKS': social_links(),
             'SPOTSJSON': json.dumps(spots, ensure_ascii=False),
             'PREVIEWSJSON': json.dumps({k: v for k, v in previews.items() if k.rsplit('-', 1)[0] in spots}), 'JSONLD': jsonld(lang, url),
+            'MAPSRCSET': ', '.join(f'/img/map-{w}.webp {w}w' for w in MAP_WIDTHS),
             'YEAR': str(datetime.date.today().year),
-            **{'L_' + k: v for k, v in m['layers'].items()},
         }
         page = pick(tpl, lang)
         page = re.sub(r'@@(\w+)@@', lambda x: vals[x.group(1)], page)
@@ -181,4 +200,7 @@ def build():
 
 
 if __name__ == '__main__':
-    build()
+    if sys.argv[1:] == ['--map-base']:  # used by tools/map/bake.mjs
+        sys.stdout.write(map_base(json.loads(read('tools', 'map', 'map.json'))))
+    else:
+        build()

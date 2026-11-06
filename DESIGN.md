@@ -62,7 +62,7 @@ Light theme only.
 
 ## Map
 
-- **Drawing**: inline SVG made from OpenStreetMap data (river Someșul Mic, named parks, forests, lakes, main and secondary roads), simplified to about 95 KB, cropped to the city (viewBox `100 30 880 490`). No map library, no map images from other servers, no API key. Built with `tools/map/` (see CLAUDE.md).
+- **Drawing**: made from OpenStreetMap data (river Someșul Mic, named parks, forests, lakes, main and secondary roads), simplified to about 95 KB, cropped to the city (viewBox `100 30 880 490`). No map library, no map images from other servers, no API key. Built with `tools/map/` (see CLAUDE.md). The watercolor layer is shown as a still image drawn from that SVG (`tools/map/bake.mjs`), because its filters were slow to repaint on phones; routes, dots and pens stay inline SVG on top.
 - **Style C watercolor**: the fills (forests, parks, water, river) get an SVG filter: `feTurbulence` (fractal noise, base frequency 0.035, 3 octaves) → `feDisplacementMap` (scale 9) → slight blur blended back in. A paper grain layer (fine noise, multiply, 50%) sits over the whole map. Roads stay sharp. Parks and roads fade under the watercolor.
 - **Routes**: one dotted orange loop per spot (2px dots, 9px gaps, 4px wide). Each loop follows the park shape; small parks get a larger loop so it reads at full map size.
 - **Motion** (the only motion on the page):
