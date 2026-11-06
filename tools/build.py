@@ -125,10 +125,24 @@ def jsonld(lang, url):
     }, ensure_ascii=False)
 
 
+def add_previews(page, previews):
+    """Each <img src="/img/X.webp"> gets X's tiny preview as its background, seen until the photo arrives."""
+    def one(x):
+        name = x.group(1)
+        if name not in previews:
+            sys.exit(f'no preview for /img/{name}.webp: run python3 -I tools/images/previews.py')
+        return f'{x.group(0)} style="background:url({previews[name]}) center/cover"'
+    return re.sub(r'<img\b[^>]*?\ssrc="/img/([\w-]+)\.webp"', one, page)
+
+
 def build():
     m = json.loads(read('tools', 'map', 'map.json'))
     spots = json.loads(read('src', 'spots.json'))
     pens = json.loads(read('src', 'pens.json'))
+    previews = json.loads(read('src', 'previews.json'))
+    missing = sorted({f'{k}-{i}' for k in spots for i in (1, 2, 3)} - set(previews))
+    if missing:
+        sys.exit(f'no preview for {missing}: run python3 -I tools/images/previews.py')
     if set(spots) != set(m['routes']):
         sys.exit(f'spots.json {sorted(spots)} and map.json routes {sorted(m["routes"])} differ')
     defs, routes, marks, chips = map_parts(m, spots)
@@ -146,12 +160,14 @@ def build():
                                       else "Hi! I'd like a home visit for my pet.")),
             'VIEWBOX': ' '.join(map(str, VIEWBOX)), 'ROUTEDEFS': defs, 'ROUTES': routes,
             'SPOTS': marks, 'PENS': pens_svg, 'PENCHIPS': pen_chips, 'PENSJSON': json.dumps(pens, ensure_ascii=False), 'CHIPS': chips, 'PAW': PAW, 'SOCIALLINKS': social_links(),
-            'SPOTSJSON': json.dumps(spots, ensure_ascii=False), 'JSONLD': jsonld(lang, url),
+            'SPOTSJSON': json.dumps(spots, ensure_ascii=False),
+            'PREVIEWSJSON': json.dumps({k: v for k, v in previews.items() if k.rsplit('-', 1)[0] in spots}), 'JSONLD': jsonld(lang, url),
             'YEAR': str(datetime.date.today().year),
             **{'L_' + k: v for k, v in m['layers'].items()},
         }
         page = pick(tpl, lang)
         page = re.sub(r'@@(\w+)@@', lambda x: vals[x.group(1)], page)
+        page = add_previews(page, previews)
         os.makedirs(os.path.join(OUT, path), exist_ok=True)
         with open(os.path.join(OUT, path, 'index.html'), 'w', encoding='utf-8') as f:
             f.write(page)

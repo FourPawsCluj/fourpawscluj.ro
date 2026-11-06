@@ -389,6 +389,7 @@ footer a{color:var(--olive);font-weight:700}
 (() => {
 const SPOTS = @@SPOTSJSON@@;
 const PENS = @@PENSJSON@@;
+const PREVIEWS = @@PREVIEWSJSON@@;
 const lang = document.documentElement.lang;
 const L = {ro: {photo: "foto", hi: (n, d) => `Bună! Aș vrea o plimbare în ${n} (${d}).`},
            en: {photo: "photo", hi: (n, d) => `Hi! I'd like a walk in ${n} (${d}).`}}[lang];
@@ -402,6 +403,14 @@ const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // the hover card is for a mouse on a wide screen; phones (and narrow windows) use the bottom sheet only
 const wide = matchMedia("(min-width: 821px)");
 const img = (k, i) => `/img/${k}-${i}.webp`;
+// show the park photo's tiny preview at once, the photo itself when it arrives
+function photo(el, k, i) {
+  if (el.dataset.src === k + i) return;
+  el.dataset.src = k + i;
+  el.removeAttribute("src");
+  el.style.background = `url(${PREVIEWS[k + "-" + i]}) center/cover`;
+  el.src = img(k, i);
+}
 
 // routes draw when the map is on screen, then the paws start walking
 new IntersectionObserver((es, o) => {
@@ -422,7 +431,7 @@ function openSpot(k) {
   $("p-desc").textContent = t.desc;
   $("p-price").textContent = s.price + " lei";
   $("p-dur").textContent = "/ " + t.dur;
-  panel.querySelectorAll(".ph").forEach((p, i) => { p.src = img(k, i + 1); p.alt = `${s.name}, ${L.photo} ${i + 1}`; });
+  panel.querySelectorAll(".ph").forEach((p, i) => { photo(p, k, i + 1); p.alt = `${s.name}, ${L.photo} ${i + 1}`; });
   $("p-wa").href = "https://wa.me/40746048445?text=" + encodeURIComponent(L.hi(s.name, t.dur));
   panel.classList.remove("pen-mode");
   panel.classList.add("open");
@@ -451,7 +460,7 @@ document.querySelectorAll(".spot").forEach(g => {
   {
     g.addEventListener("pointerenter", e => {
       if (e.pointerType !== "mouse" || !wide.matches) return;
-      tip.querySelector(".ph").src = img(g.dataset.k, 1);
+      photo(tip.querySelector(".ph"), g.dataset.k, 1);
       tip.querySelector("b").textContent = s.name;
       tip.querySelector("small").textContent = s[lang].dur + " · " + s.price + " lei";
       // keep the card inside the map: above the dot if it fits, else below; never past the sides
