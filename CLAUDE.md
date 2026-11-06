@@ -31,7 +31,7 @@ Push to `main` → `.github/workflows/pages.yml` runs the build and publishes `_
 - **Map credit**: the footer keeps the © OpenStreetMap contributors link; the map data license requires it.
 - **Motion lives on the map only** (routes drawing, walking paw, dot pulse) plus the paw trail color change. Every animation has a `prefers-reduced-motion` fallback.
 - **Map layers**: the watercolor map is one still SVG; routes and dots are a second SVG on top, so animation never re-renders the watercolor filter. Keep anything that moves in the top SVG.
-- **Speed**: each page under 300 KB before photos (now ~131 KB); photos WebP/AVIF under 120 KB, lazy below the hero.
+- **Speed**: each page under 300 KB before photos (now ~168 KB); photos WebP/AVIF under 120 KB, lazy below the hero.
 - Photos: `src/static/img/{hero,<park>-1..3}.webp`, made by `tools/images/generate.py` (gpt-image-2; key `OPENAI_API_KEY`, Dan uses the one in `~/Documents/dev/products/resortbuggy/.env`). Real photos replace them under the same names.
 - Every photo has a tiny blurred preview in `src/previews.json` (made by `python3 -I tools/images/previews.py`, needs `cwebp`); the build puts it behind each `<img src="/img/…">` and the park card sets it in JS, so a photo still loading shows its preview, not an empty box. Rerun the script after adding or replacing a photo; the build stops if a preview is missing.
 
