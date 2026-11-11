@@ -105,3 +105,61 @@ Rebuild the images: open `src/covers.html` in a browser (served from `social/src
   > —
   >
   > Four Paws Cluj walks dogs in Cluj-Napoca, through the city's parks. We pick your dog up at home, walk them for 30, 60 or 90 minutes and bring them back, with a photo and a short report on WhatsApp after every walk. Bookings: WhatsApp +40 746 048 445 · fourpawscluj.ro
+
+---
+
+## Content pillars (added 2026-11-11)
+
+Five post types. Facebook and Instagram get the same posts; LinkedIn gets only **Încredere** posts and the office-lunch offer.
+
+| # | Pillar | Type | What it is | Ends with |
+|---|---|---|---|---|
+| 1 | **Sfaturi** | info | one useful tip for an owner in Cluj: paws and road salt, short winter days, ticks by the Someș, how long a walk a breed needs, what a cat needs when you are away | "Salvează postarea" / question |
+| 2 | **Locuri** | info | one park or dog pen from the map: what it is like, which dogs it suits, where the pen is (16 țarcuri on the map) | link to the map, fourpawscluj.ro |
+| 3 | **Ofertă** | sell | one service, one price, one reason to book now: trial walk 30 lei, 10-walk pack 350 lei, home visits 40/60/100 lei | WhatsApp 0746 048 445 |
+| 4 | **Încredere** | trust | Emilia and how the work is done: her animals (16 years with birds), the photo report after every walk, the free meet-and-greet, the rules from "Înainte să rezervi" | soft: "Scrie-ne dacă ai întrebări" |
+| 5 | **Comunitate** | engage | a question, a poll, "câinele săptămânii" (client dogs, with the owner's OK), a funny walk moment | comments |
+
+### Order
+
+A cycle of 6 posts, then it repeats:
+
+```
+1 Sfaturi → 2 Ofertă → 3 Locuri → 4 Încredere → 5 Comunitate → 6 Ofertă
+```
+
+Rules:
+- Never two posts of the same pillar in a row.
+- At most 2 sell posts in 6; a sell post never follows a sell post.
+- The info post right before an **Ofertă** sets up its problem (tip about leaving a cat alone → next post: home visits). The sell post then needs no explaining.
+- **Comunitate** needs clients: until there are client dogs, use questions and polls only, or swap it for a second **Sfaturi**.
+- Photos: real ones from walks and visits whenever there are any; an AI photo passed off as a real client costs trust if found out (see DESIGN.md).
+
+At 3 posts a week (Mon, Wed, Fri), one cycle is two weeks.
+
+### Scheduled on SocialKit (Instagram, 19:00 Bucharest)
+
+| Date | Pillar | Carousel |
+|---|---|---|
+| Wed 11 Nov | Încredere | non-negotiables (published 09:00) |
+| Fri 13 Nov | Sfaturi | tip-week: sare pe trotuare, verifică labele |
+| Mon 16 Nov | Ofertă | paws-vs: planul tău vs. o plimbare cu Four Paws |
+| Wed 18 Nov | Încredere | sitter-does: ce face de fapt un pet sitter |
+| Fri 20 Nov | Ofertă | services-pets: serviciile și animalele |
+| Mon 23 Nov | Încredere | booking-steps: întâi ne cunoaștem |
+
+### Next topics to make (from Wed 25 Nov)
+
+| Date | Pillar | Topic |
+|---|---|---|
+| Wed 25 Nov | Comunitate | Întrebare: unde îți place cel mai mult să-ți plimbi câinele în Cluj? |
+| Fri 27 Nov | Ofertă | Prima plimbare 30 lei: 30 min, ca să ne cunoaștem |
+| Mon 30 Nov | Sfaturi | Pleci de Crăciun? Ce are nevoie pisica (sau papagalul) cât lipsești |
+| Wed 2 Dec | Ofertă | Vizite la domiciliu de sărbători: 40 / 60 lei, 2 vizite pe zi 100 lei; rezervă din timp |
+| Fri 4 Dec | Locuri | Țarcurile pentru câini din Cluj: 16 pe hartă, fără lesă |
+| Mon 7 Dec | Încredere | Emilia: 16 ani cu păsări, plus câini, pisici, iepuri, reptile |
+| Wed 9 Dec | Comunitate | Sondaj: câinele tău e de 30 sau de 90 de minute? |
+| Fri 11 Dec | Ofertă | Pachet 10 plimbări 350 lei, economisești 50 lei |
+| Mon 14 Dec | Locuri | Parcul Central: lac, alei umbrite, bun pentru câini mici și seniori |
+
+Holiday home visits (2 Dec) are the post most likely to bring bookings: people book pet care for Christmas in early December. Repeat it as the **Ofertă** on 18 Dec.
