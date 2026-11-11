@@ -110,7 +110,7 @@ Rebuild the images: open `src/covers.html` in a browser (served from `social/src
 
 ## Content pillars (added 2026-11-11)
 
-Five post types. Facebook and Instagram get the same posts; LinkedIn gets only **Încredere** posts and the office-lunch offer.
+Five post types. Instagram, Facebook and LinkedIn get the same posts (LinkedIn at 09:00, Instagram at 19:00).
 
 | # | Pillar | Type | What it is | Ends with |
 |---|---|---|---|---|
@@ -137,7 +137,7 @@ Rules:
 
 At 3 posts a week (Mon, Wed, Fri), one cycle is two weeks.
 
-### Scheduled on SocialKit (Instagram, 19:00 Bucharest)
+### Scheduled on SocialKit (Instagram 19:00, LinkedIn 09:00, Bucharest time)
 
 | Date | Pillar | Carousel |
 |---|---|---|
