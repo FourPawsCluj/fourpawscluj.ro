@@ -117,7 +117,7 @@ Five post types. Instagram, Facebook and LinkedIn get the same posts (LinkedIn a
 | 1 | **Sfaturi** | info | one useful tip for an owner in Cluj: paws and road salt, short winter days, ticks by the Someș, how long a walk a breed needs, what a cat needs when you are away | "Salvează postarea" / question |
 | 2 | **Locuri** | info | one park or dog pen from the map: what it is like, which dogs it suits, where the pen is (16 țarcuri on the map) | link to the map, fourpawscluj.ro |
 | 3 | **Ofertă** | sell | one service, one price, one reason to book now: trial walk 30 lei, 10-walk pack 350 lei, home visits 40/60/100 lei | WhatsApp 0746 048 445 |
-| 4 | **Încredere** | trust | Emilia and how the work is done: her animals (16 years with birds), the photo report after every walk, the free meet-and-greet, the rules from "Înainte să rezervi" | soft: "Scrie-ne dacă ai întrebări" |
+| 4 | **Încredere** | trust | Emilia and how the work is done: her animals (16 years with birds), the photo report after every walk, the free meet-and-greet, the rules from "Înainte să rezervi"; Emilia's real pet photos showing how well she gets on with animals (relaxed, happy, groomed, well fed) | soft: "Scrie-ne dacă ai întrebări" |
 | 5 | **Comunitate** | engage | a question, a poll, "câinele săptămânii" (client dogs, with the owner's OK), a funny walk moment | comments |
 
 ### Order
