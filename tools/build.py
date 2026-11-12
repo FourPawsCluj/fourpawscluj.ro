@@ -2,7 +2,8 @@
 
     python3 -I tools/build.py
 
-Inputs: src/page.html (one template for both languages), src/spots.json (map parks),
+Inputs: src/page.html (one template for both languages), src/guide.html (the dog pens and parks page,
+which reuses page.html's CSS and icons), src/spots.json (map parks), src/pens.json (dog pens),
 tools/map/map.json (map shapes from tools/map/gen.py), src/static/ (icons, robots, CNAME…).
 Text in the template is written {{Romanian||English}}; @@NAME@@ marks values filled in here.
 """
@@ -125,6 +126,58 @@ def jsonld(lang, url):
     }, ensure_ascii=False)
 
 
+GUIDE = {'ro': 'tarcuri-caini-cluj/', 'en': 'en/dog-parks-cluj/'}  # the dog pens and parks page
+AREA_EN = {'Centru': 'Centre'}
+
+
+def maps_link(p):
+    return f'https://www.google.com/maps/search/?api=1&query={p["lat"]},{p["lon"]}'
+
+
+def guide_parts(m, spots, pens, lang):
+    """Map (still: routes, park dots, pen paws that link to the list), pens grouped by area, park cards."""
+    routes = ''.join(f'<path class="route-base" d="{r["d"]}"/>' for r in m['routes'].values())
+    pens_svg, _ = pen_marks(m, pens, lang)
+    pens_svg = re.sub(r'<g class="pen" data-p="([\w-]+)" tabindex="0" role="button" (aria-label="[^"]*") (transform="[^"]*")>(.*?)</g>',
+                      r'<a class="pen" href="#\1" \2><g \3>\4</g></a>', pens_svg)
+    marks = []
+    for k, r in m['routes'].items():
+        x, y = r['c']
+        name = html.escape(spots[k]['name'])
+        marks.append(f'<a class="spot" href="#parc-{k}" aria-label="{name}"><g transform="translate({x} {y})">'
+                     f'<circle class="hit" r="34"/><circle class="ring" r="14"/><circle class="core" r="5"/>'
+                     + LABEL.get(spots[k].get('label'), LABEL[None]).format(name=name) + '</a>')
+    by_area = {}
+    for k, p in pens.items():
+        by_area.setdefault(p['area'], []).append((k, p))
+    approx = 'poziție aproximativă' if lang == 'ro' else 'approximate position'
+    nav = 'Deschide în Google Maps' if lang == 'ro' else 'Open in Google Maps'
+    areas = ''.join(
+        f'<div class="card"><h3>{html.escape(a if lang == "ro" else AREA_EN.get(a, a))}</h3><ul>'
+        + ''.join(f'<li id="{k}"><b>{html.escape(p["name"])}</b><a href="{maps_link(p)}" target="_blank" rel="noopener">{nav} →</a>'
+                  + (f'<small>{approx}</small>' if 'osm' not in p else '') + '</li>'
+                  for k, p in sorted(ps, key=lambda kp: kp[1]['name']))
+        + '</ul></div>' for a, ps in sorted(by_area.items()))
+    parks = []
+    for k, s in spots.items():
+        t = s[lang]
+        hi = (f'Bună! Aș vrea o plimbare în {s["name"]} ({t["dur"]}).' if lang == 'ro'
+              else f"Hi! I'd like a walk in {s['name']} ({t['dur']}).")
+        parks.append(f'<article class="pk" id="parc-{k}"><img src="/img/{k}-1.webp" width="720" height="720" loading="lazy" alt="{html.escape(s["name"])}">'
+                     f'<div><h3>{html.escape(s["name"])}</h3><div class="tags">{"".join(f"<span>{html.escape(x)}</span>" for x in t["tags"])}</div>'
+                     f'<p>{html.escape(t["desc"])}</p><p class="meta"><b>{s["price"]} lei</b> / {t["dur"]}</p>'
+                     f'<a class="btn orange" href="{html.escape(wa(hi))}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#wa"/></svg>'
+                     f'{"Vreau o plimbare aici" if lang == "ro" else "Book a walk here"}</a></div></article>')
+    return routes, pens_svg, '\n'.join(marks), areas, ''.join(parks)
+
+
+def guide_jsonld(lang, url, home):
+    return json.dumps({'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': 1, 'name': 'Four Paws Cluj', 'item': home},
+        {'@type': 'ListItem', 'position': 2, 'name': 'Țarcuri și parcuri pentru câini' if lang == 'ro' else 'Dog pens and parks', 'item': url},
+    ]}, ensure_ascii=False)
+
+
 def add_previews(page, previews):
     """Each <img src="/img/X.webp"> gets X's tiny preview as its background, seen until the photo arrives."""
     def one(x):
@@ -166,6 +219,9 @@ def build():
     check_map_images(m)
     defs, routes, marks, chips = map_parts(m, spots)
     tpl = read('src', 'page.html')
+    gtpl = read('src', 'guide.html')
+    css = re.search(r'<style>\n(.*?)</style>', tpl, re.S).group(1)
+    symbols = re.search(r'<svg width="0" height="0".*?</svg>', tpl, re.S).group(0)
     shutil.rmtree(OUT, ignore_errors=True)
     shutil.copytree(os.path.join(ROOT, 'src', 'static'), OUT)
     for lang, path in (('ro', ''), ('en', 'en/')):
@@ -182,7 +238,7 @@ def build():
             'SPOTSJSON': json.dumps(spots, ensure_ascii=False),
             'PREVIEWSJSON': json.dumps({k: v for k, v in previews.items() if k.rsplit('-', 1)[0] in spots}), 'JSONLD': jsonld(lang, url),
             'MAPSRCSET': ', '.join(f'/img/map-{w}.webp {w}w' for w in MAP_WIDTHS),
-            'YEAR': str(datetime.date.today().year),
+            'YEAR': str(datetime.date.today().year), 'GUIDE': '/' + GUIDE[lang],
         }
         page = pick(tpl, lang)
         page = re.sub(r'@@(\w+)@@', lambda x: vals[x.group(1)], page)
@@ -191,9 +247,23 @@ def build():
         with open(os.path.join(OUT, path, 'index.html'), 'w', encoding='utf-8') as f:
             f.write(page)
         print(f'{path or "/"}index.html  {len(page.encode()) // 1024} KB')
+        gpath = GUIDE[lang]
+        g_routes, g_pens, g_spots, areas, parks = guide_parts(m, spots, pens, lang)
+        gvals = {**vals, 'URL': f'{SITE}/{gpath}', 'OTHER': '/' + GUIDE['en' if lang == 'ro' else 'ro'],
+                 'JSONLD': guide_jsonld(lang, f'{SITE}/{gpath}', url), 'CSS': pick(css, lang),
+                 'SYMBOLS': re.sub(r'@@PAW@@', PAW, symbols), 'ROUTES': g_routes, 'PENS': g_pens, 'SPOTS': g_spots,
+                 'AREAS': areas, 'PARKS': parks, 'NPENS': str(len(pens)), 'NPARKS': str(len(spots))}
+        gpage = re.sub(r'@@(\w+)@@', lambda x: gvals[x.group(1)], pick(gtpl, lang))
+        gpage = add_previews(gpage, previews)
+        os.makedirs(os.path.join(OUT, gpath), exist_ok=True)
+        with open(os.path.join(OUT, gpath, 'index.html'), 'w', encoding='utf-8') as f:
+            f.write(gpage)
+        print(f'{gpath}index.html  {len(gpage.encode()) // 1024} KB')
     today = datetime.date.today().isoformat()
-    alt = ''.join(f'<xhtml:link rel="alternate" hreflang="{h}" href="{SITE}/{p}"/>' for h, p in (('ro', ''), ('en', 'en/')))
-    urls = ''.join(f'<url><loc>{SITE}/{p}</loc><lastmod>{today}</lastmod>{alt}</url>' for p in ('', 'en/'))
+    urls = ''
+    for pair in (('', 'en/'), (GUIDE['ro'], GUIDE['en'])):
+        alt = ''.join(f'<xhtml:link rel="alternate" hreflang="{h}" href="{SITE}/{p}"/>' for h, p in zip(('ro', 'en'), pair))
+        urls += ''.join(f'<url><loc>{SITE}/{p}</loc><lastmod>{today}</lastmod>{alt}</url>' for p in pair)
     with open(os.path.join(OUT, 'sitemap.xml'), 'w', encoding='utf-8') as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
                 f'xmlns:xhtml="http://www.w3.org/1999/xhtml">{urls}</urlset>\n')

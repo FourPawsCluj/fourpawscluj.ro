@@ -9,11 +9,12 @@ Before any visual or text change, read `DESIGN.md`: it holds the colors, type, p
 Plain static HTML + CSS + one small inline vanilla JS script. No framework, no npm. One Python script (stdlib only) builds the site into `_site/`:
 
 ```bash
-python3 -I tools/build.py                                # → _site/index.html, _site/en/index.html, sitemap.xml + src/static/*
+python3 -I tools/build.py                                # → _site/index.html, _site/en/index.html, the dog pens page (RO + EN), sitemap.xml + src/static/*
 python3 -m http.server 8765 --bind 127.0.0.1 --directory _site   # preview at http://127.0.0.1:8765/
 ```
 
 - `src/page.html`: the one template for both languages. Text is written `{{Romanian||English}}` (works in text and attributes); `@@NAME@@` marks values `tools/build.py` fills in (map shapes, routes, links, JSON-LD).
+- `src/guide.html`: the dog pens and parks page, `/tarcuri-caini-cluj/` and `/en/dog-parks-cluj/` (for searches like "țarc câini Cluj"). It takes its CSS and icons from `src/page.html`; the build fills in the map (still, no motion), the pens grouped by neighborhood with Google Maps links, and one card per park from `src/spots.json`. The home page links to it from the map legend and the footer.
 - `src/pens.json`: the 16 city dog pens shown as small paws on the map (OSM `leisure=dog_park` + the Primăria list).
 - `src/spots.json`: the map parks (name, price, RO/EN length, tags, description). Its keys must match the routes in `tools/map/map.json`; the build stops if they differ.
 - `src/static/`: copied as is: icons, `og-image.png` (share preview), `site.webmanifest`, `robots.txt`, `404.html`, `CNAME`, `.nojekyll`.
@@ -56,4 +57,4 @@ node tools/map/bake.mjs && python3 -I tools/images/previews.py     # draw the ma
 
 ## Check before pushing
 
-At 1360px and 400px wide, on `/` and `/en/`: no horizontal scroll, routes draw, map dots and park buttons open the park card (bottom sheet on phone), WhatsApp links carry the right language, no console errors.
+At 1360px and 400px wide, on `/`, `/en/`, `/tarcuri-caini-cluj/` and `/en/dog-parks-cluj/`: no horizontal scroll, routes draw, map dots and park buttons open the park card (bottom sheet on phone), WhatsApp links carry the right language, no console errors.

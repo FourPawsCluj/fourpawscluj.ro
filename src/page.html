@@ -117,6 +117,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding-block:
 .legend{display:flex;align-items:center;gap:10px;color:var(--muted);margin:14px 0 0;font-size:15px}
 .legend i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--lime);border:2px solid var(--olive);display:grid;place-items:center}
 .legend svg{width:14px;height:14px;color:var(--olive)}
+.legend a{color:var(--olive);font-weight:700}
 
 .report{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;padding-block:70px}
 .report p{color:var(--muted);font-size:18px}
@@ -247,7 +248,7 @@ footer a{color:var(--olive);font-weight:700}
       </aside>
     </div>
     <div class="chips" id="chips">@@CHIPS@@</div>
-    <p class="legend"><i><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#paw"/></svg></i>{{Țarcuri pentru câini ale primăriei: aici câinele aleargă liber, fără lesă. Le includ în plimbare, la cerere.||City dog pens: fenced areas where your dog runs off the leash. I add one to the walk on request.}}</p>
+    <p class="legend"><i><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#paw"/></svg></i>{{Țarcuri pentru câini ale primăriei: aici câinele aleargă liber, fără lesă. Le includ în plimbare, la cerere. <a href="@@GUIDE@@">Toate țarcurile, pe cartiere →</a>||City dog pens: fenced areas where your dog runs off the leash. I add one to the walk on request. <a href="@@GUIDE@@">All dog pens, by neighbourhood →</a>}}</p>
     <div class="chips pen-chips">@@PENCHIPS@@</div>
   </div>
 </section>
@@ -348,7 +349,7 @@ footer a{color:var(--olive);font-weight:700}
 </section>
 </main>
 
-<footer class="wrap"><div class="socs">@@SOCIALLINKS@@</div>© @@YEAR@@ Four Paws Cluj · Cluj-Napoca · <a href="tel:+40746048445">0746 048 445</a> · {{Date hartă||Map data}} © <a href="https://www.openstreetmap.org/copyright" rel="noopener">{{contribuitorii OpenStreetMap||OpenStreetMap contributors}}</a></footer>
+<footer class="wrap"><div class="socs">@@SOCIALLINKS@@</div>© @@YEAR@@ Four Paws Cluj · Cluj-Napoca · <a href="tel:+40746048445">0746 048 445</a> · <a href="@@GUIDE@@">{{Țarcuri pentru câini în Cluj||Dog parks in Cluj}}</a> · {{Date hartă||Map data}} © <a href="https://www.openstreetmap.org/copyright" rel="noopener">{{contribuitorii OpenStreetMap||OpenStreetMap contributors}}</a></footer>
 
 <a class="wa-float" href="@@WA@@" target="_blank" rel="noopener" aria-label="WhatsApp 0746 048 445"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa"/></svg></a>
 

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="{{ro||en}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{Țarcuri pentru câini în Cluj-Napoca: hartă și listă pe cartiere · Four Paws Cluj||Dog parks in Cluj-Napoca: map and list by neighbourhood · Four Paws Cluj}}</title>
+<meta name="description" content="{{Toate cele @@NPENS@@ țarcuri pentru câini din Cluj-Napoca pe hartă, pe cartiere (Mănăștur, Gheorgheni, Zorilor, Mărăști…), cu link de navigare. Plus @@NPARKS@@ parcuri bune de plimbare cu câinele.||All @@NPENS@@ off-leash dog pens in Cluj-Napoca on a map, by neighbourhood (Mănăștur, Gheorgheni, Zorilor, Mărăști…), with directions. Plus @@NPARKS@@ parks good for a dog walk.}}">
+<link rel="canonical" href="@@URL@@">
+<link rel="alternate" hreflang="ro" href="@@SITE@@/tarcuri-caini-cluj/">
+<link rel="alternate" hreflang="en" href="@@SITE@@/en/dog-parks-cluj/">
+<link rel="alternate" hreflang="x-default" href="@@SITE@@/tarcuri-caini-cluj/">
+<meta name="theme-color" content="#1B2F04">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Four Paws Cluj">
+<meta property="og:locale" content="{{ro_RO||en_GB}}">
+<meta property="og:url" content="@@URL@@">
+<meta property="og:title" content="{{Țarcuri pentru câini în Cluj-Napoca: hartă||Dog parks in Cluj-Napoca: map}}">
+<meta property="og:description" content="{{Toate cele @@NPENS@@ țarcuri pentru câini din oraș, pe hartă și pe cartiere.||All @@NPENS@@ off-leash dog pens in the city, on a map and by neighbourhood.}}">
+<meta property="og:image" content="@@SITE@@/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">@@JSONLD@@</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+@@CSS@@
+.g-head{padding-block:20px 40px;max-width:52em}
+.crumb{color:var(--muted);font-size:14px;margin:0 0 14px}
+.crumb a{color:var(--olive);font-weight:700}
+.g-head h1{font-size:clamp(38px,6vw,76px);font-weight:800;letter-spacing:-.03em}
+.g-head p.lead{font-size:19px;color:var(--muted);margin:20px 0 0}
+.g-sec{padding-block:40px}
+.g-sec h2{font-size:clamp(30px,4.4vw,52px);font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+.g-sec > p{color:var(--muted);max-width:44em;margin:0 0 20px}
+.map-box a.pen{cursor:pointer}
+.areas{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.areas .card h3{font-size:24px;margin-bottom:6px}
+.areas ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.areas li{display:flex;flex-direction:column;gap:2px;scroll-margin-top:20px}
+.areas li b{color:var(--olive)}
+.areas li a{font-size:14px;font-weight:700;color:var(--orange);text-decoration:none}
+.areas li a:hover{text-decoration:underline}
+.areas small{color:var(--muted)}
+.areas li:target{background:#eaf9d9;border-radius:10px;padding:6px 8px;margin:-6px -8px}
+.parks{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.pk{background:#fff;border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;scroll-margin-top:20px}
+.pk img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;display:block}
+.pk > div{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.pk h3{font-size:26px}
+.pk .tags{display:flex;gap:6px;flex-wrap:wrap}
+.pk .tags span{background:var(--cream);border-radius:999px;padding:4px 10px;font-size:13px;font-weight:700;color:var(--olive)}
+.pk p{margin:0;color:var(--muted)}
+.pk .meta{color:var(--olive);font-weight:700;margin-top:auto}
+.pk .meta b{font-family:"Bricolage Grotesque",sans-serif;font-size:28px}
+.pk .btn{justify-content:center;padding:12px 18px}
+.faq{display:grid;gap:14px;max-width:52em}
+.faq .card h3{font-size:22px}
+.faq .card p{font-size:16px;color:var(--muted);opacity:1}
+.cta{background:var(--olive);color:#e9f3dc;border-radius:var(--r);padding:34px 28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;margin-block:30px 10px}
+.cta h2{color:var(--lime);font-size:clamp(26px,3.6vw,40px);font-weight:800;letter-spacing:-.02em}
+.cta p{margin:8px 0 0;max-width:34em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="@@HOME@@"><b><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><use href="#paw"/></svg></b>Four Paws Cluj</a>
+    <div class="nav-r">
+      <a class="lang" href="@@OTHER@@" hreflang="{{en||ro}}" lang="{{en||ro}}">{{EN||RO}}</a>
+      <a class="btn" href="@@WA@@" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#wa"/></svg>{{Programează pe WhatsApp||Book on WhatsApp}}</a>
+    </div>
+  </nav>
+  <header class="g-head">
+    <p class="crumb"><a href="@@HOME@@">Four Paws Cluj</a> › {{Țarcuri și parcuri pentru câini||Dog pens and parks}}</p>
+    <h1>{{Țarcuri și parcuri pentru câini în Cluj-Napoca||Dog pens and parks in Cluj-Napoca}}</h1>
+    <p class="lead">{{Țarcurile pentru câini sunt spații împrejmuite ale primăriei, unde câinele aleargă liber, fără lesă. Mai jos sunt toate cele @@NPENS@@ pe care le știm, pe hartă și pe cartiere, fiecare cu link de navigare. Apoi @@NPARKS@@ parcuri în care merg eu la plimbare cu câinii.||Dog pens are fenced city areas where your dog runs free, off the leash. Below are all @@NPENS@@ we know of, on a map and by neighbourhood, each with directions. Then @@NPARKS@@ parks where I walk dogs.}}</p>
+  </header>
+</div>
+
+<main>
+<section class="wrap g-sec" id="harta">
+  <h2>{{Harta||The map}}</h2>
+  <p>{{Lăbuțele verzi sunt țarcurile; apasă pe una ca să sari la ea în listă. Punctele cu nume sunt parcurile, cu traseul de plimbare portocaliu.||The green paws are the pens; tap one to jump to it in the list. The named dots are the parks, with the orange walk route.}}</p>
+  <div class="map-box">
+    <img class="map" src="/img/map-1400.webp" srcset="@@MAPSRCSET@@" sizes="(min-width: 1180px) 1140px, calc(100vw - 40px)" width="880" height="490" alt="">
+    <div class="grain"></div>
+    <svg class="map" viewBox="@@VIEWBOX@@" preserveAspectRatio="xMidYMid slice" role="group" aria-label="{{Harta Cluj-Napoca cu țarcurile pentru câini și parcurile||Map of Cluj-Napoca with the dog pens and parks}}">
+      @@ROUTES@@
+      @@PENS@@
+      @@SPOTS@@
+    </svg>
+  </div>
+</section>
+
+<section class="wrap g-sec" id="tarcuri">
+  <h2>{{Țarcuri pentru câini, pe cartiere||Dog pens by neighbourhood}}</h2>
+  <p>{{Lista e făcută din OpenStreetMap și din lista primăriei. Unde scrie „poziție aproximativă”, țarcul apare doar pe lista primăriei și l-am pus pe hartă după stradă sau parc.||Made from OpenStreetMap and the city hall's list. Where it says "approximate position", the pen is only on the city hall's list and we placed it by its street or park.}}</p>
+  <div class="areas">@@AREAS@@</div>
+</section>
+
+<section class="wrap g-sec" id="parcuri">
+  <h2>{{Parcuri bune de plimbare cu câinele||Parks for a dog walk}}</h2>
+  <p>{{Parcurile din Cluj-Napoca în care plimb câinii, cu cât durează tura și cât costă dacă îl plimb eu. Preluarea de acasă și aducerea înapoi sunt incluse.||The Cluj-Napoca parks where I walk dogs, with how long the walk takes and the price if I walk yours. Pickup from home and drop-off are included.}}</p>
+  <div class="parks">@@PARKS@@</div>
+</section>
+
+<section class="wrap g-sec" id="intrebari">
+  <h2>{{Întrebări||Questions}}</h2>
+  <div class="faq">
+    <div class="card"><h3>{{Poți să-mi duci tu câinele la țarc?||Can you take my dog to a pen?}}</h3><p>{{Da. Îl iau de acasă, îl duc la țarcul cel mai apropiat să alerge, apoi îl aduc înapoi. Plimbarea scurtă (30 min) costă 40 lei, cea lungă (60 min) 60 lei, iar prima plimbare, ca să ne cunoaștem, 30 lei. Deplasarea în Cluj-Napoca și Florești e inclusă.||Yes. I pick your dog up at home, take it to the nearest pen to run, then bring it back. A short walk (30 min) is 40 lei, a long one (60 min) 60 lei, and the first walk, to get to know each other, 30 lei. Travel in Cluj-Napoca and Florești is included.}}</p></div>
+    <div class="card"><h3>{{Lipsește un țarc sau s-a închis unul?||Is a pen missing or closed?}}</h3><p>{{Scrie-mi pe WhatsApp la 0746 048 445 și îl adaug sau îl scot de pe hartă.||Message me on WhatsApp at 0746 048 445 and I'll add it to the map or take it off.}}</p></div>
+    <div class="card"><h3>{{Ai grijă și de pisici sau alte animale?||Do you look after cats or other pets?}}</h3><p>{{Da, fac <a href="@@HOME@@#vizite">vizite la domiciliu</a> pentru pisici, păsări, iepuri, hamsteri și reptile, de la 40 lei pentru 30 de minute.||Yes, I do <a href="@@HOME@@#vizite">home visits</a> for cats, birds, rabbits, hamsters and reptiles, from 40 lei for 30 minutes.}}</p></div>
+  </div>
+  <div class="cta">
+    <div><h2>{{N-ai timp de plimbare azi?||No time for a walk today?}}</h2><p>{{Îți iau câinele de acasă și ți-l aduc obosit și fericit. Primești poze și un raport pe WhatsApp după fiecare plimbare.||I pick your dog up at home and bring it back tired and happy. You get photos and a report on WhatsApp after every walk.}}</p></div>
+    <a class="btn orange" href="@@WA@@" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#wa"/></svg>{{Scrie-ne: 0746 048 445||Message us: 0746 048 445}}</a>
+  </div>
+</section>
+</main>
+<footer class="wrap"><div class="socs">@@SOCIALLINKS@@</div>© @@YEAR@@ Four Paws Cluj · Cluj-Napoca · <a href="tel:+40746048445">0746 048 445</a> · <a href="@@HOME@@">{{Plimbări câini și vizite la domiciliu||Dog walking and home visits}}</a> · {{Date hartă||Map data}} © <a href="https://www.openstreetmap.org/copyright" rel="noopener">{{contribuitorii OpenStreetMap||OpenStreetMap contributors}}</a></footer>
+<a class="wa-float" href="@@WA@@" target="_blank" rel="noopener" aria-label="WhatsApp 0746 048 445"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#wa"/></svg></a>
+@@SYMBOLS@@
+</body>
+</html>

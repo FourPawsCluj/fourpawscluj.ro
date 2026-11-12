@@ -60,6 +60,10 @@ Light theme only.
 10. **Floating WhatsApp button**: bottom right, always visible.
 11. **Paw trail**: small paws down the right edge of the page, every 70px, alternating left/right, turned 180° ±12° so the toes point down (the animal walks down the page as you scroll). Gray `#CFCFCF` by default; a paw turns black `#111` once it is above 60% of the screen height, and goes back to gray when you scroll up. 0.35s color change. Decoration only (`aria-hidden`).
 
+## Dog pens page
+
+`/tarcuri-caini-cluj/` (EN `/en/dog-parks-cluj/`), added 2026-11-12 to be found for "țarc câini Cluj" and "unde plimb câinele Cluj": breadcrumb, H1, one paragraph; the map still (routes drawn, no walking paw, no pulse), pen paws and park dots link down to their place in the list; pens grouped by neighborhood (white cards, Google Maps link, "poziție aproximativă" for the 3 from the Primăria list only); one card per park (photo 1, tags, description, price/length, WhatsApp button with the same message as the map card); 3 questions; olive WhatsApp box. Same nav, footer, colors and type as the home page. Only facts from `src/pens.json` and `src/spots.json`: no rules, opening hours or amenities nobody checked.
+
 ## Map
 
 - **Drawing**: made from OpenStreetMap data (river Someșul Mic, named parks, forests, lakes, main and secondary roads), simplified to about 95 KB, cropped to the city (viewBox `100 30 880 490`). No map library, no map images from other servers, no API key. Built with `tools/map/` (see CLAUDE.md). The watercolor layer is shown as a still image drawn from that SVG (`tools/map/bake.mjs`), because its filters were slow to repaint on phones; routes, dots and pens stay inline SVG on top.
