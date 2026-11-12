@@ -15,7 +15,8 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory _site   # preview at ht
 
 - `src/page.html`: the one template for both languages. Text is written `{{Romanian||English}}` (works in text and attributes); `@@NAME@@` marks values `tools/build.py` fills in (map shapes, routes, links, JSON-LD).
 - `src/guide.html`: the dog pens and parks page, `/tarcuri-caini-cluj/` and `/en/dog-parks-cluj/` (for searches like "țarc câini Cluj"). It takes its CSS and icons from `src/page.html`; the build fills in the map (still, no motion), the pens grouped by neighborhood with Google Maps links, and one card per park from `src/spots.json`. The home page links to it from the map legend and the footer.
-- `src/pens.json`: the 16 city dog pens shown as small paws on the map (OSM `leisure=dog_park` + the Primăria list).
+- `src/pens.json`: the 16 city dog pens shown as small paws on the map (OSM `leisure=dog_park` + the Primăria list). Optional `"notes": {"ro": …, "en": …}` per pen (fence, water, benches, shade, how busy, from Emilia's visits) shows under the pen on the dog pens page.
+- Visit counting: `GOATCOUNTER` in `tools/build.py` holds the goatcounter.com account name (no cookies, so no cookie banner). Empty means no counter. When set, every WhatsApp and phone link counts its clicks as `whatsapp<page path>` / `telefon<page path>`.
 - `src/spots.json`: the map parks (name, price, RO/EN length, tags, description). Its keys must match the routes in `tools/map/map.json`; the build stops if they differ.
 - `src/static/`: copied as is: icons, `og-image.png` (share preview), `site.webmanifest`, `robots.txt`, `404.html`, `CNAME`, `.nojekyll`.
 - Prices are in two places that must agree: the price cards in `src/page.html` and `PRICES` in `tools/build.py` (structured data for Google).

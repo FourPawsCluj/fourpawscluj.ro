@@ -36,6 +36,19 @@ def social_links():
                    f'<svg viewBox="0 0 24 24" aria-hidden="true">{ICONS[n]}</svg></a>' for n, u in SOCIAL)
 
 
+GOATCOUNTER = ''  # account name at goatcounter.com (Dan makes it); empty = no counting at all
+
+
+def add_counter(page, where):
+    """GoatCounter (no cookies): page views, plus clicks on WhatsApp and phone links named by the page they are on."""
+    if not GOATCOUNTER:
+        return page
+    page = re.sub(r'<a ((?:class="[^"]*" )?(?:id="[^"]*" )?href="(https://wa\.me/|tel:))',
+                  lambda x: f'<a data-goatcounter-click="{"whatsapp" if "wa.me" in x.group(2) else "telefon"}{where}" ' + x.group(1), page)
+    tag = f'<script data-goatcounter="https://{GOATCOUNTER}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
+    return page.replace('</body>', tag + '\n</body>', 1)
+
+
 PRICES = [  # (ro name, en name, lei, minutes) — keep in step with the price cards in page.html
     ('Prima plimbare', 'Trial walk', 30, 30), ('Plimbare scurtă', 'Short walk', 40, 30),
     ('Plimbare lungă', 'Long walk', 60, 60), ('Tura mare', 'Big walk', 80, 90),
@@ -118,7 +131,7 @@ def jsonld(lang, url):
         '@context': 'https://schema.org', '@type': 'LocalBusiness', '@id': SITE + '/#business',
         'name': 'Four Paws Cluj', 'url': url, 'image': SITE + '/og-image.png',
         'telephone': '+' + PHONE, 'priceRange': '20–350 RON',
-        'description': 'Plimbări pentru câini și vizite la domiciliu pentru animale în Cluj-Napoca.' if lang == 'ro' else 'Dog walking and pet home visits in Cluj-Napoca.',
+        'description': 'Dog walker și pet sitter în Cluj-Napoca: plimbări pentru câini și vizite la domiciliu pentru animale.' if lang == 'ro' else 'Dog walker and pet sitter in Cluj-Napoca: dog walks and pet home visits.',
         'areaServed': [{'@type': 'City', 'name': 'Cluj-Napoca'}, {'@type': 'City', 'name': 'Florești'}],
         'sameAs': [u for _, u in SOCIAL],
         'makesOffer': [{'@type': 'Offer', 'name': ro if lang == 'ro' else en, 'price': lei, 'priceCurrency': 'RON'}
@@ -155,7 +168,8 @@ def guide_parts(m, spots, pens, lang):
     areas = ''.join(
         f'<div class="card"><h3>{html.escape(a if lang == "ro" else AREA_EN.get(a, a))}</h3><ul>'
         + ''.join(f'<li id="{k}"><b>{html.escape(p["name"])}</b><a href="{maps_link(p)}" target="_blank" rel="noopener">{nav} →</a>'
-                  + (f'<small>{approx}</small>' if 'osm' not in p else '') + '</li>'
+                  + (f'<small>{approx}</small>' if 'osm' not in p else '')
+                  + (f'<span class="note">{html.escape(p["notes"][lang])}</span>' if p.get('notes') else '') + '</li>'
                   for k, p in sorted(ps, key=lambda kp: kp[1]['name']))
         + '</ul></div>' for a, ps in sorted(by_area.items()))
     parks = []
@@ -243,6 +257,7 @@ def build():
         page = pick(tpl, lang)
         page = re.sub(r'@@(\w+)@@', lambda x: vals[x.group(1)], page)
         page = add_previews(page, previews)
+        page = add_counter(page, '/' + path)
         os.makedirs(os.path.join(OUT, path), exist_ok=True)
         with open(os.path.join(OUT, path, 'index.html'), 'w', encoding='utf-8') as f:
             f.write(page)
@@ -255,6 +270,7 @@ def build():
                  'AREAS': areas, 'PARKS': parks, 'NPENS': str(len(pens)), 'NPARKS': str(len(spots))}
         gpage = re.sub(r'@@(\w+)@@', lambda x: gvals[x.group(1)], pick(gtpl, lang))
         gpage = add_previews(gpage, previews)
+        gpage = add_counter(gpage, '/' + gpath)
         os.makedirs(os.path.join(OUT, gpath), exist_ok=True)
         with open(os.path.join(OUT, gpath, 'index.html'), 'w', encoding='utf-8') as f:
             f.write(gpage)
