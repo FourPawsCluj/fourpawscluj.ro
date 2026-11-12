@@ -36,7 +36,7 @@ def social_links():
                    f'<svg viewBox="0 0 24 24" aria-hidden="true">{ICONS[n]}</svg></a>' for n, u in SOCIAL)
 
 
-GOATCOUNTER = ''  # account name at goatcounter.com (Dan makes it); empty = no counting at all
+GOATCOUNTER = 'fourpawscluj'  # account name at goatcounter.com (Dan makes it); empty = no counting at all
 
 
 def add_counter(page, where):
