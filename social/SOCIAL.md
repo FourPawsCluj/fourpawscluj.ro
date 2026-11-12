@@ -157,7 +157,7 @@ At 3 posts a week (Mon, Wed, Fri), one cycle is two weeks.
 | Mon 30 Nov | Sfaturi | Pleci de Crăciun? Ce are nevoie pisica (sau papagalul) cât lipsești |
 | Wed 2 Dec | Ofertă | Vizite la domiciliu de sărbători: 40 / 60 lei, 2 vizite pe zi 100 lei; rezervă din timp |
 | Fri 4 Dec | Locuri | Țarcurile pentru câini din Cluj: 16 pe hartă, fără lesă |
-| Mon 7 Dec | Încredere | Emilia: 16 ani cu păsări, plus câini, pisici, iepuri, reptile |
+| Mon 7 Dec | Încredere | **Scheduled**: "Uite cât de bine ne înțelegem, eu și animalele" (Emilia's real pet photos) |
 | Wed 9 Dec | Comunitate | Sondaj: câinele tău e de 30 sau de 90 de minute? |
 | Fri 11 Dec | Ofertă | Pachet 10 plimbări 350 lei, economisești 50 lei |
 | Mon 14 Dec | Locuri | Parcul Central: lac, alei umbrite, bun pentru câini mici și seniori |
